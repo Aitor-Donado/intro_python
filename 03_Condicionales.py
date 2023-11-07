@@ -11,16 +11,21 @@ Created on Sun Feb 26 14:45:24 2023
 ####################################
 
 # Creamos una lista.
-a = [5, 2, 3, 4, 5]
+a = [3, 2, 3, 4, 5]
+
 
 # Creamos nuestra primera condicion.
 # (Hay que seleccionar todo el bloque. Atención a la tabulación)
-if (a[0] > a[-1]):
+if (a[0] < a[-1]):
     print("El primer elemento de la lista es mayor que el último")
+    print("Hola")
+    if (a[1] > a[2]):
+        d = 34 * a[0]
+print(a)
 
 # Muy poco habitual, pero puede aparecer
-a[0] > a[-1] or print("El primer elemento no es mayor que el último")
 
+(a[0] > a[-1]) or print("El primer elemento no es mayor que el último")
 
 # Acción alternativa
 if (a[0] > a[-1]):
@@ -29,8 +34,7 @@ else:
     print("El primer elemento de la lista es menor o igual que el último")
 
 
-print("El primero es mayor" if a[0] > a[-1]
-    else "El primero no es mayor", "que el último")
+print("El primero es mayor" if a[0] > a[-1] else "El primero no es mayor", "que el último")
 
 condicion = (a[0] > a[-1])
 print("El primero es mayor" if condicion else "El primero no es mayor", "que el último")
@@ -77,13 +81,13 @@ else:
     print(
         "El primer elemento de la lista es menor que el último y es " + str(a[0]))
 
-limite = 7
+limite = 10
 if (a[0] > limite):
     print(
         "El primer elemento de la lista es mayor que el límite y es " + str(a[0]))
 elif a[0] == a[-1]:
     print(
-        "El primer elemento de la lista es igual que el último y es " + str(a[0]))
+        "El primer elemento de la lista es igual que el límite y es " + str(a[0]))
 else:
     print(
-        "El primer elemento de la lista es menor que el último y es " + str(a[0]))
+        "El primer elemento de la lista es menor que el límite y es " + str(a[0]))

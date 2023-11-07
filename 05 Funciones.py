@@ -49,8 +49,8 @@ def dime_algo():
 # Aunque no haya argumentos los paréntesis son obligatorios para que se ejecute
 dime_algo()
 dime_algo()
-dime_algo()
-
+variable = dime_algo()
+type(variable)
 
 # Los argumentos son tuplas con elementos que vanentre paréntesis
 def dime(mensaje):
@@ -63,17 +63,20 @@ dime("Buenas tardes")
 # Las funciones anteriores no devuelven ningún valor
 resultado = dime("Buenos días")
 # resultado es un objeto NoneType. Es decir, no es nada
+type(resultado)
 
 # Creamos una funcion que sume + 1 y devuelva el valor.
-def suma1(x):
+def suma1(x: int)-> int:
     '''
+    Esta función suma una unidad al valor recibido
     x: int o float.
     '''
     y = x + 1
     return y
 
 
-suma1(563)
+
+sumado = suma1()
 # El resultado se devuelve en la consola porque es el comportamiento de spyder,
 # pero lo normal es guardarlo para usarlo después...
 resultado = suma1(233)
@@ -90,7 +93,6 @@ def es_par(num):
     salida = (num % 2 == 0)
     return salida
 
-
 # Puedo ver el "return"
 es_par(124)
 es_par(1987)
@@ -98,10 +100,11 @@ es_par(1987)
 # ...o bien usarlo sin guardarlo.
 def imprime_si_es_par(num):
     if es_par(num):
-        print("es par")
+        print("Es par")
     else:
         print("Es impar")
-imprime_si_es_par(126)
+
+imprime_si_es_par(127)
 
 # Función para multiplicar con dos argumentos
 # En lugar de multiplicar, estamos sumando 'a', 'b' veces
@@ -109,13 +112,14 @@ def multiplicacion(a, b):
     resultado = 0
     while b > 0:
         resultado += a
-        print(resultado, b)
+        #print(resultado, b)
         b -= 1
     return resultado
 
 
 print(multiplicacion(5, 80))
-
+valor = multiplicacion(5, 20)
+valor
 # Ejercicio: Crear una función que reciba dos parámetros y 
 # que compruebe si el primer número es divisible entre el segundo
 
@@ -127,7 +131,7 @@ def divisible(num1, num2):
         print(num1, "NO es divisible entre", num2)
         return False
 
-divisible(31,5)
+divisible(30, 5)
 
 
 ##################################################################
@@ -151,7 +155,7 @@ evaluar_cuadratica(2, 2, 3, 8)  # f(x=8) = 2x² + 2x + 3
 # tengo que acordarme del orden de los coeficientes
 evaluar_cuadratica(a=2, b=2, c=3, x=8)
 
-evaluar_cuadratica(x=8, c=3, a=2, b=2)
+evaluar_cuadratica(x = 8, c = 3, a = 2, b = 2)
 
 # Así sí
 evaluar_cuadratica(2, 2, 3, x=8)
@@ -166,7 +170,7 @@ evaluar_cuadratica(a=1, c=3, x=8)
 
 # A los coeficientes puedo darles un valor "por defecto"
 # Pero los argumentos sin valor por defecto deben ir ANTES que los otros
-def evaluar_cuadratica_incompleta(x, a=0, b=0, c=0):
+def evaluar_cuadratica_incompleta(x:float, a=0, b=0, c=0)-> float:
     '''
     a, b, c: valores numéricos de los coeficientes de una ecuación
     de segundo grado
@@ -174,38 +178,35 @@ def evaluar_cuadratica_incompleta(x, a=0, b=0, c=0):
     '''
     solucion = a*x*x+b*x+c
     return solucion
-
+evaluar_cuadratica_incompleta()
 evaluar_cuadratica_incompleta(a=1, c=3, x=8)
 evaluar_cuadratica_incompleta(a=2, b=2, c=3, x=8)
 evaluar_cuadratica_incompleta(3, b=2)
 evaluar_cuadratica_incompleta(3)
-evaluar_cuadratica_incompleta(a=2, b=2, c=3, x=8)
 
 
 ###########################
 #    *args y *kwargs      #
 ###########################
 # ¿Y si no sé el número de parámetros posicionales que voy a meter?
-
 def imprime_lineas(*lineas):
     for arg in lineas:
         print(arg)
 
 num1 =3
 imprime_lineas("Puedo imprimir", "las líneas", "que quiera", "fin", num1)
+imprime_lineas("a")
 
 # Podría hacerlo con una lista
 def imprime_lineas_con_lista(lista):
     for linea in lista:
         print(linea)
 
-lista_a_imprimir = ["Puedo imprimir", "las líneas", "que quiera"]
-imprime_lineas_con_lista(lista_a_imprimir, num1)
+lista_a_imprimir = ("Puedo imprimir", "las líneas", "que quiera")
+imprime_lineas_con_lista(lista_a_imprimir)
 
 # pero conviene saber lo que significa el asterisco porque aparece en la
 # documentación de las funciones que importaremos
-
-
 def imprime_lineas2(**argumentos_por_clave):
     for clave, valor in argumentos_por_clave.items():
         print(f'{clave}: {valor}')

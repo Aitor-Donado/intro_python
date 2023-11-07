@@ -61,7 +61,9 @@ print("El valor de 'numeros' fuera de la función es", numeros)
 
 # Para modificar los tipos simples podemos devolverlos modificados y reasignarlos:
 def doblar_valor(numero):
-    return numero * 2
+    numero = numero * 2
+    print("Valor dentro de la función", numero)
+    return numero
 
 numero = 10
 numero = doblar_valor(numero)
@@ -88,4 +90,9 @@ def doblar_valores(numeros):
     Comprensión de lista (List comprehension)
     """
     copia_numeros = [n * 2 for n in numeros]
+    #copia_numeros = numeros[:]
+    #copia_numeros = numeros.copy()
     print("El valor de 'numeros' dentro de la función es", copia_numeros)
+
+doblar_valores(numeros)
+print("El valor de 'numeros' fuera de la función es", numeros)

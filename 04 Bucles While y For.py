@@ -16,22 +16,29 @@ Created on Sun Feb 26 14:48:07 2023
 # Imprimir una secuencia de números menor que 10
 a = 0
 while a < 10:
-    a += 1
     print(a)
+    a += 1
+    #a = a +1
 
 # Imprimir una secuencia de números.
 # Si el número = 5 abortar la iteración.
 var = 10
 while var > 0:
-    var = var - 1
     print('Valor actual de la variable:', var)
+    var = var - 1
     if var == 5:
+        print("He alcanzado el valor buscado")
         break
 
 # EJEMPLO DE USO DE BUCLE WHILE
 # Comprobar si un número proporcionado es un cubo perfecto o no.
 # En este caso introducimos manualmente el numero
+entrada_por_teclado = input("Imprimo algo: ")
+type(entrada_por_teclado)
+
 x = int(input('Introduce un número entero: '))
+type(x)
+
 contador = 0
 while contador**3 < x:
     contador = contador + 1
@@ -60,6 +67,9 @@ print(list(rango_desde_cero))
 # Imprimir un rango de números
 for a in range(1, 10):
     print(a)
+
+for elemento in [1, 2, 3, 4, 5, 6, 7, 8, 9]:
+    print(elemento)
 
 # La función list hace un volcado del range
 lista_con_rango = list(range(1, 10))
@@ -94,19 +104,23 @@ cadena = input('Introduce una cadena de texto en minúsculas: ')
 for indice in range(len(cadena)):
     if cadena[indice] == "i" or cadena[indice] == "u":
         print("La cadena contiene una i o una u")
+        print(cadena[indice])
+        break
 
 # Mejor así:
 cadena = input('Introduce una cadena de texto en minúsculas: ')
 for letra in cadena:
     if letra == "i" or letra == "u":
         print("La cadena contiene una i o una u")
+        print(letra)
 
 # Aún mejor:
 cadena = input('Introduce una cadena de texto en minúsculas: ')
-vocales = "iu"
+vocales = "iuíú"
 for letra in cadena:
     if letra in vocales:
         print("La cadena contiene una i o una u")
+        print(letra)
 
 # Tambien podemos hacerlo dos búsquedas por separado.
 cadena = input('Introduce una cadena de texto en minúsculas: ').lower()
@@ -115,8 +129,10 @@ cerradas = "iuíú"
 for letra in cadena:
     if letra in abiertas:
         print("La cadena contiene una vocal abierta")
+        print(letra)
     if letra in cerradas:
         print("La cadena contiene una vocal cerrada")
+        print(letra)
 
 #######################
 # zip() y enumerate() #
@@ -135,6 +151,7 @@ capitales = ['Bilbao', 'San Sebastián', 'Vitoria']
 
 combinados = zip(provincias, capitales)
 print(list(combinados))
+
 
 for provincia, capital in zip(provincias, capitales):
     print(f"La capital de {provincia} es {capital}")
