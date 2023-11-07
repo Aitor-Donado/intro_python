@@ -2,7 +2,7 @@
 """
 Created on Wed Jul  4 16:36:21 2018
 
-@author: Borja Balaparda
+@author: Aitor Donado
 """
 
 #####################################
