@@ -18,8 +18,8 @@ Created on Fri Feb 24 18:34:31 2023
 (1 + 3) / 4
 1 + 3 / 4
 # División entera
-20 // 5  # Devuelve el cociente sin decimales
-10 % 3  # Devuelve el resto
+21 // 5  # Devuelve el cociente sin decimales
+22 % 5  # Devuelve el resto
 # Potencia
 2**2
 3**2
@@ -46,7 +46,6 @@ Created on Fri Feb 24 18:34:31 2023
 #######################
 # Operadores lógicos  #
 #######################
-
 a = True
 b = False
 # and 	Devuelve True si ambos operandos son True
@@ -54,12 +53,11 @@ a and b
 # or 	Devuelve True si alguno de los operandos es True
 a or b
 # not 	Lo contrario del valor lógico introducido
-not a
+not b
 
 #################################
 # CREACION DE VARIABLES SIMPLES #
 #################################
-
 a = 3 + 2 - 10
 b = 3.8 + 2.5 - 2.65
 c = 3 * 2
@@ -67,14 +65,13 @@ d = 10 / 3
 e = (1 + 3) // 4
 f = 2**2
 g = 3**2
-i = 25**0.5
+i = 25 ** 0.5
 i, j = 2, "hola"
 
 num = 7
 num = num + 1
+num += 1
 
-
-num -= 2
 # ---------------------------------
 # Otras operaciones de asignación
 # ---------------------------------
@@ -144,8 +141,6 @@ nada = None
 ###################################
 # TRABAJANDO CON CADENAS DE TEXTO #
 ###################################
-
-
 # Mediante comillas simples o dobles
 saludo1 = "Hola Mundo"
 saludo2 = 'Hola Mundo'
@@ -154,6 +149,20 @@ saludo1 == saludo2
 alfabeto = "abcdefghi"
 numeros = "123456"
 
+# Cadenas de texto multilínea
+"""
+Texto
+en varias
+líneas
+"""
+'''
+También con
+comillas simples
+'''
+
+# "Escape" de comillas (cuando tenemos comillas dentro de un string)
+str_con_comillas = "Estas comillas : \" y esta \' se interpretan literalmente gracias a la barra inclinada"
+print(str_con_comillas)
 
 # COMPROBACION DEL TIPO DE VARIABLE
 type(saludo1)
@@ -183,7 +192,7 @@ saludo1[1:-1]
 # inicio : fin : salto
 saludo1[0:10:3]     # Devuelve las posiciones 0,3,6,9
 saludo1[0:7:2]      # Devuelve las posiciones 0,2,4,6
-# Se atrás a adelante
+# De atrás a adelante
 saludo1[7:0:-2]     # Devuelve las posiciones 7,5,3,1
 
 saludo1[::3]
@@ -195,17 +204,23 @@ saludo1mays = saludo1.upper()
 saludo1minus = saludo1.lower()
 
 alfabeto.capitalize()
+nombre_propio = "antonio fernández lópez"
+nombre_propio.title()
 
 # Otros métodos de los strings:
 # https://www.w3schools.com/python/python_ref_string.asp
-# Todos estos métodos devuelven otro string modificado. No modifican el original.
+"""
+Todos estos métodos devuelven otro string modificado. No modifican el original.
+Por tanto, la sintaxis es:
+`nuevo_string = string_original.metodo_modificador(posibles_parametros)`
+"""
 
-# Especial atención al método format.
+# Prestamos especial atención al método format por tener diferentes sintaxis.
 formateado1 = "Mi nombre es {nombre}, vivo en {ciudad}".format(
     nombre="Aitor", ciudad="Bilbao")
 nombre = "María"
 ciudad = "Madrid"
-formateado2 = "Mi nombre es {0}, vivo en {1}".format(nombre, ciudad)
+formateado2 = "Mi nombre es {1}, vivo en {0}".format(nombre, ciudad)
 formateado3 = f"Mi nombre es {nombre}, vivo en {ciudad}"
 
 reemplazado = formateado3.replace("María", "Aitor")
@@ -229,21 +244,45 @@ saludo_repe.count("Mundo")
 
 
 # SEPARAR UNA CADENA.
-lista_separada = saludo_repe.split("o", maxsplit=3)
+lista_separada = saludo_repe.split("o", maxsplit=10)
 # Devuelve una LISTA
-
 
 #######################################
 # TRANSFORMAR EL FORMATO DE LOS DATOS #
 #######################################
 
 # CONVERTIR NUMERO A TEXTO
-a = 5
-a1 = str(a)
-type(a)
-type(a1)
+# Imaginemos que alguien introduce un código postal con separador de miles
+cp_float = 01.250
+type(cp_float)
+# Automáticamente se ha interpretado como un número decimal (float)
+# Lo podemos convertir en string
+cp = str(cp_float)
+# Pero a veces no basta con eso, nos falta el cero a la izquierda y el cero a la derecha
+print(cp)
+
+# Usamos los métodos de los strings para obtener un formateado uniforme para todos los CPs
+miles, unidades = cp.split(".")
+
+unidades = unidades.ljust(3, '0')
+miles = miles.rjust(2,'0')
+
+cp = miles + unidades
+# Ya tenemos el formato deseado del Código Postal
+print(cp)
+type(cp)
 
 # CONVERTIR TEXTO A NUMERO
 b = "8"
 b1 = int(b)
 b2 = float(b)
+b + b
+b1 + b1
+b2 + b2
+
+# Sin embargo, int y float nos causarán errores si hay algo distinto de un número
+correcto = float("12.6")
+print(2*correcto)
+incorrecto = float("12,6")
+correccion = float("12,6".replace(',', '.'))
+print(2*correccion)

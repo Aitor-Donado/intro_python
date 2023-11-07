@@ -9,14 +9,21 @@ Created on Sun Feb 26 14:43:39 2023
 # TRABAJANDO CON LISTAS #
 #########################
 
+lista_vacia = []
 
 # Lista de texto.
-semana = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]
+semana = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+semana_iniciales = list(("L", "M", "X", "J", "V", "S", "D"))
 
 # Lista numerica.
-enteros = [1, 2, 3, 4, 5, 7]
+enteros = [1, 2, 3, 4, 5, 6, 7]
+# El primer carácter es el 0
+enteros[0]
 
+type(enteros)
+type(semana)
 type(enteros[0])
+type(semana[0])
 
 
 # lista mixta
@@ -24,15 +31,14 @@ lista_mixta = ["Lunes", 27, "Febrero", 2023]
 
 # lista con listas
 lista_d_listas = [["Alberto", 1.75, 80],
-                  ["Ana", 1.70, 65],
-                  ["María", 1.90, 80]]
+                    ["Ana", 1.70, 65],
+                    ["María", 1.90, 80]]
 
 # listas anidadas
 lista_anidada = [["Stanley Kubrick", ["Senderos de Gloria", 1957]],
-                 ["Woody Allen", ["Hannah y sus hermanas", 1986]]]
+                ["Woody Allen", ["Hannah y sus hermanas", 1986]]]
 
-
-# EXTRAER ELEMNTOS DE UNA LISTA
+# EXTRAER ELEMENTOS DE UNA LISTA
 # Primer elemento.
 semana[0]
 # Segundo elemento.
@@ -87,7 +93,7 @@ mes = 4 * semana
 # COMPROBAR SI UN ELEMENTO EXISTE EN UNA LISTA
 "Lunes" in semana
 "Lunes" not in semana
-"lunes" in semana
+"Martes" in semana
 # Si buscamos el número como string no lo encuentra
 "1" in enteros
 1 in enteros
@@ -99,32 +105,38 @@ lista_anidada.count(["Stanley Kubrick", ["Senderos de Gloria", 1957]])
 # No se accede a los elementos anidados
 lista_anidada.count("Stanley Kubrick")
 
-
+#-------------------------------------------------
+# Diferencia entre copiar y referenciar una lista
+#-------------------------------------------------
 # Hacer una copia de una variable
 lista_mixta_cp = lista_mixta[:]
 lista_mixta_cp2 = lista_mixta.copy()
-# OJO, no es lo mismo crear una copia que esignar una variable
+# OJO, no es lo mismo crear una copia que asignar una referencia a una variable
 lista_mixta_ref = lista_mixta
+# Las modificaciones en una referencia...
 lista_mixta_ref.remove("Febrero")
-# Mayo también ha sido eliminado de lista_mixta
+# ...afectan a la otra
+# Febrero también ha sido eliminado de lista_mixta
 lista_mixta
-
+# Pero las copias siguen intactas
+lista_mixta_cp
+lista_mixta_cp2
 
 # ELIMINAR ELEMENTOS DE UNA LISTA
 # Eliminar un elemento concreto
 lista_mixta = ["Lunes", 27, "Febrero", 2023]
 lista_mixta.remove(27)
-lista_mixta.remove("Febrero")
+lista_mixta.remove(lista_mixta[0])
 lista_anidada.remove(["Stanley Kubrick", ["Senderos de Gloria", 1957]])
 
 
 # Eliminar el ultimo elemento.
 lista_mixta = ["Lunes", 27, "Febrero", 2023]
 # Esta función SI modifica el original
-lista_mixta.pop()
-# Porque lo que devuelve es el objeto eliminado
+valor = lista_mixta.pop()
 lista_mixta
-
+# Porque lo que devuelve es el objeto eliminado
+print(valor)
 
 # Borrar los elementos de la lista.
 lista_mixta_cp.clear()
@@ -140,6 +152,7 @@ semana.sort()
 semana
 
 # Por orden numerico
+print(enteros)
 # Cambiamos un elemento
 enteros[0] = 5
 enteros.sort()
@@ -156,7 +169,7 @@ enteros.insert(3, "hola")  # Tambien pueden ser palabras.
 # Extender una lista con datos de otra lista.
 # Añadimos elementos a una lista
 semana_cp = semana.copy()
-semana_cp.extend(lista_anidada)
+semana_cp.extend(enteros)
 semana_cp
 
 # Creamos un elemento nuevo (pisando el anterior)
@@ -165,23 +178,32 @@ semana_ref = semana
 semana_ref = semana + lista_anidada
 semana_ref
 
-# Meter Index
+# Obtener la posición en la que se encuentra un elemento conocido
+indice = semana_ref.index("Martes")
+# si el elemento está varias veces, indice será el primer hallazgo
+# Podemos modificarlo
+semana_ref[indice] = "Tuesday"
+
+
 
 #########################
 # TRABAJANDO CON TUPLAS #
 #########################
-
-# CREAMOS LAS TUPLAS
+# Python, predeterminadamente, convierte en tupla cualquier sucesión de elementos.
+sucesion = 1, 2, 3
+type(sucesion)
+# Pero mejor usar el paréntesis
 tupla_mixta = (1, 2, "tres", "cuatro", 5)
 # Si la tupla sólo tiene un valor hay que añadir una coma al final
 tupla = (1,)
 # Si no, ignora el paréntesis
 numero = (1)
-# es posible no usar el paréntesis ya que tupla es el tipo por defecto de valores separados por comas
-tupla_sin_parentesis = "casa", "Iturribide", 12
+# Es un entero, no una tupla
+type(numero)
 
 # También podemos hacer desempaquetado
-vivienda, lugar, numero = tupla_sin_parentesis
+tupla_sin_parentesis = "casa", "Iturribide", 12
+vivienda, calle, numero = tupla_sin_parentesis
 
 # EXTRAEMOS ELEMENToS DE LAS TUPLAS
 tupla_mixta[:2]
@@ -189,10 +211,9 @@ tupla_mixta[1:3]
 tupla_mixta[2:-1]
 tupla_mixta[2:]
 
-# PERO NO SON MUTABLES
+# PERO LAS TUPLAS NO SON MUTABLES
 tupla_mixta[0] = 2
 tupla_mixta.sort()
-# La ventaja de esto es que pueden ser utilizadas como claves para los diccionarios
 
 # MEDIMOS LA LONGITUD
 len(tupla_mixta)
@@ -221,9 +242,6 @@ reyes_espana = {
     "Borbones": ["Felipe V", "Luis I", "Fernando VI", "Carlos III", "Carlos IV", "Fernando VII", "Isabel II", "Alfonso XII", "Alfonso XIII", "Juan Carlos I"]
 }
 
-# EXTRAEMOS LOS VALORES
-lista_val = reyes_espana.values()
-
 # Podemos extraer valores usando la clave
 reyes_espana.get("Austrias")
 reyes_espana.get("Austrias")[0]
@@ -239,7 +257,18 @@ reyes_espana
 reyes_espana['Saboya'] = "Amadeo último"
 reyes_espana
 reyes_espana.get("Austrias")[0] = "Felipe El Hermoso"
-reyes_espana
+
+# Es posible extraer los valores por índice, con ciertas modificaciones
+diccionario_valores = reyes_espana.values()
+type(diccionario_valores)
+# El tipo dict_values no es indexable
+diccionario_valores[0]
+lista_valores = list(diccionario_valores)
+lista_valores[0]
+# Puedo indexar y recorrer `lista_valores` con bucles for, pero pierdo la información de las claves
+
+# Obtener la última clave de un diccionario
+reyes_espana.get(list(reyes_espana.keys())[-1])
 
 
 #############
@@ -250,6 +279,7 @@ reyes_espana
 # Crea un conjunto con una serie de elementos entre llaves
 # Los elementos repetidos se eliminan
 numeros = {1, 3, 2, 9, 3, 1}
+tallas = {"M", "S", "M", "XXL", "S", "M", "L", "S", "XL", "M", "L", "M", "XS", "S", "M"}
 
 # Crea un conjunto a partir de un string
 # Los caracteres repetidos se eliminan
@@ -257,18 +287,25 @@ letras = set('Hola Pythonista')
 
 # Crea un conjunto a partir de una lista
 # Los elementos repetidos de la lista se eliminan
-unicos = set([3, 5, 6, 1, 5, 17])
+lista_numeros = [3, 5, 6, 1, 5, 17]
+unicos = set(lista_numeros)
 
-# Los elementos no son accesibles como en las listas (no están ordenados)
+# Los elementos NO son accesibles como en las listas (no están ordenados)
 unicos[-2:]
-# Pero sí son mutables como en las listas
+# Pero SÍ son mutables como en las listas
 unicos.remove(1)
-# Si no está da error
+# Si no está obtenemos un error
 unicos.remove(1)
 # Y se debe usar discard
 unicos.discard(17)
 
 # Union
 numeros | letras
+numeros.union(letras)
+
 # Intersección
 numeros & unicos
+numeros.intersection(unicos)
+
+numeros.isdisjoint(unicos)
+

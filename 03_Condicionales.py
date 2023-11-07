@@ -30,7 +30,7 @@ else:
 
 
 print("El primero es mayor" if a[0] > a[-1]
-      else "El primero no es mayor", "que el último")
+    else "El primero no es mayor", "que el último")
 
 condicion = (a[0] > a[-1])
 print("El primero es mayor" if condicion else "El primero no es mayor", "que el último")
@@ -57,7 +57,7 @@ else:
 # Cambiamos el primer elemento
 a[0] = 8
 
-# Repetimos la condicion.
+# Repetimos la condicion (es el mismo código de arriba).
 if a[0] > a[-1]:
     print("El primer elemento de la lista es mayor que el último")
 elif a[0] == a[-1]:

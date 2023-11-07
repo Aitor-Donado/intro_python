@@ -122,7 +122,7 @@ for letra in cadena:
 # zip() y enumerate() #
 #######################
 """
- ZIP = CREMALLERA
+    ZIP = CREMALLERA
 La función zip se utiliza para combinar dos o más iterables en una secuencia de 
 tuplas, donde la i-ésima tupla contiene el i-ésimo elemento de cada uno de los 
 iterables pasados.
