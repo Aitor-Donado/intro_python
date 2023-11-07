@@ -82,3 +82,10 @@ doblar_valores(numeros.copy()) # o con la función copy
 print("El valor de 'numeros' fuera de la función es", numeros)
 
 # Podemos hacer la copia antes de enviar el valor o dentro de la función
+# En este caso la hago dentro usando la comprensión de listas
+def doblar_valores(numeros):
+    """
+    Comprensión de lista (List comprehension)
+    """
+    copia_numeros = [n * 2 for n in numeros]
+    print("El valor de 'numeros' dentro de la función es", copia_numeros)
