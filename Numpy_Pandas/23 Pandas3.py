@@ -28,15 +28,12 @@ pd.set_option('display.max_columns', None) #comando para mostrar todas las colum
 # Guardar los csv en los dataframe adult, fuego y tempe (respectivamente)
 # 
 
-# In[2]:
-
 
 
 
 
 # #### Consultar de los archivos cargados, los primeros registros
 
-# In[ ]:
 
 
 
@@ -44,7 +41,6 @@ pd.set_option('display.max_columns', None) #comando para mostrar todas las colum
 
 # #### Obtener la información básica de cada csv cargado (info())
 
-# In[ ]:
 
 
 
@@ -53,7 +49,6 @@ pd.set_option('display.max_columns', None) #comando para mostrar todas las colum
 # #### Comprobación manual de valores perdidos para el dataframe.  Comprueba si existen valores perdidos por columna y el total de valores perdidos por columna.  Comprueba el total de valores perdidos por fila.
 # Puedes comprobar los valores perdidos con la función **.isnull()** -> df['columna'].isnull()
 
-# In[ ]:
 
 
 
@@ -61,7 +56,6 @@ pd.set_option('display.max_columns', None) #comando para mostrar todas las colum
 
 # #### Comprobar los valores perdidos a través de un mapa de calor
 
-# In[ ]:
 
 
 
@@ -69,7 +63,6 @@ pd.set_option('display.max_columns', None) #comando para mostrar todas las colum
 
 # #### Sabiendo la ubicación y cantidad de valores perdidos... eliminar las columnas que tengan algún valor perdido.
 
-# In[ ]:
 
 
 
@@ -77,7 +70,6 @@ pd.set_option('display.max_columns', None) #comando para mostrar todas las colum
 
 # #### En el dataset adult, comprueba los valores existentes en la columna Sex.  ¿Los valores son consistentes? ¿Ves alguna categoría errónea? Sustituye la categoría errónea por el valor correcto
 
-# In[ ]:
 
 
 
