@@ -16,7 +16,6 @@
 
 # ___
 
-# In[5]:
 import numpy as np
 import pandas as pd
 
@@ -29,16 +28,15 @@ import pandas as pd
 #________________
 # Conversión de una lista, Array Numpy o diccionario a Series:
 
-# In[6]:
 labels = ['a','b','c']
 my_list = [10,20,30]
 arr = np.array([10,20,30])
 d = {'a':10,'b':20,'c':30}
 
-print (labels)
-print (my_list)
-print (arr)
-print (d)
+print(labels)
+print(my_list)
+print(arr)
+print(d)
 
 #________________
 # Usando listas
