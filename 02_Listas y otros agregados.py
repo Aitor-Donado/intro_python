@@ -49,7 +49,6 @@ semana[-1]
 # Modificar elementos por su índice
 semana[0] = "Astelehena"
 
-
 # COMPROBAR EL TIPO DE DATO QUE ES UN ELEMENTO DE LA LISTA.
 type(semana)
 type(semana[-1])
@@ -100,7 +99,8 @@ mes = 4 * semana
 
 
 # CONTAR EL NUMERO DE VECES QUE APARECE UN ELEMENTO.
-lista_anidada.count(1)
+lista_anidada.count(1957)
+mes.count("Domingo")
 lista_anidada.count(["Stanley Kubrick", ["Senderos de Gloria", 1957]])
 # No se accede a los elementos anidados
 lista_anidada.count("Stanley Kubrick")
@@ -119,7 +119,7 @@ lista_mixta_ref.remove("Febrero")
 # Febrero también ha sido eliminado de lista_mixta
 lista_mixta
 # Pero las copias siguen intactas
-lista_mixta_cp
+lista_mixta_cp.remove(2023)
 lista_mixta_cp2
 
 # ELIMINAR ELEMENTOS DE UNA LISTA
@@ -180,11 +180,12 @@ semana_ref
 
 # Obtener la posición en la que se encuentra un elemento conocido
 indice = semana_ref.index("Martes")
+semana_ref[indice+1:].index("Martes")
 # si el elemento está varias veces, indice será el primer hallazgo
 # Podemos modificarlo
 semana_ref[indice] = "Tuesday"
 
-
+semana_ref[semana_ref.index("Miércoles")] = "Wednesday"
 
 #########################
 # TRABAJANDO CON TUPLAS #

@@ -46,7 +46,7 @@ Created on Fri Feb 24 18:34:31 2023
 #######################
 # Operadores lógicos  #
 #######################
-a = True
+a = False
 b = False
 # and 	Devuelve True si ambos operandos son True
 a and b
@@ -66,11 +66,11 @@ e = (1 + 3) // 4
 f = 2**2
 g = 3**2
 i = 25 ** 0.5
-i, j = 2, "hola"
+i, j, _ = 2, "hola", 3
 
 num = 7
 num = num + 1
-num += 1
+num += 5
 
 # ---------------------------------
 # Otras operaciones de asignación
@@ -84,8 +84,9 @@ a -= 5
 # %= 	a %= 3 es equivalente a a = a % 3
 # **= 	a **= 3 es equivalente a a = a ** 3
 # //= 	a //= 3 es equivalente a a = a // 3
-
-
+a //= 5
+a = a//5
+a = "abc"
 # Obtención de la clase de una variable
 type(a)
 type(b)
@@ -142,15 +143,15 @@ nada = None
 # TRABAJANDO CON CADENAS DE TEXTO #
 ###################################
 # Mediante comillas simples o dobles
-saludo1 = "Hola Mundo"
-saludo2 = 'Hola Mundo'
+saludo1 = "Hola \"Mundo"
+saludo2 = 'Hola "M"undo'
 saludo1 == saludo2
 
 alfabeto = "abcdefghi"
 numeros = "123456"
-
+numeros + numeros
 # Cadenas de texto multilínea
-"""
+varias_lineas = """
 Texto
 en varias
 líneas
@@ -174,7 +175,7 @@ type(numeros)
 # Concatenación y repetición de cadenas
 saludo_alfabeto = saludo1 + alfabeto
 saludo_sp_alfabeto = saludo1 + "  " + alfabeto
-saludo_repe = 2 * saludo1
+saludo_repe = 5 * saludo1
 
 
 # Longitud de las cadenas
@@ -187,7 +188,7 @@ len(saludo_repe)
 saludo1[0]
 saludo1[:]
 # inicio : fin
-saludo1[1:3]
+saludo1[:3]
 saludo1[1:-1]
 # inicio : fin : salto
 saludo1[0:10:3]     # Devuelve las posiciones 0,3,6,9
@@ -205,8 +206,10 @@ saludo1minus = saludo1.lower()
 
 alfabeto.capitalize()
 nombre_propio = "antonio fernández lópez"
-nombre_propio.title()
-
+nombre_propio_corregido = nombre_propio.title()
+PI = 3.1416
+PASSWORD ="sgkhgrmjdsbvmj"
+PASSWORD =""
 # Otros métodos de los strings:
 # https://www.w3schools.com/python/python_ref_string.asp
 """
@@ -217,10 +220,10 @@ Por tanto, la sintaxis es:
 
 # Prestamos especial atención al método format por tener diferentes sintaxis.
 formateado1 = "Mi nombre es {nombre}, vivo en {ciudad}".format(
-    nombre="Aitor", ciudad="Bilbao")
+    nombre="Aitor", ciudad="Burgos")
 nombre = "María"
 ciudad = "Madrid"
-formateado2 = "Mi nombre es {1}, vivo en {0}".format(nombre, ciudad)
+formateado2 = "Mi nombre es {0}, vivo en {1}".format(nombre, ciudad)
 formateado3 = f"Mi nombre es {nombre}, vivo en {ciudad}"
 
 reemplazado = formateado3.replace("María", "Aitor")
@@ -232,7 +235,7 @@ reemplazado = formateado3.replace("María", "Aitor")
 "m" in saludo1
 "Ma" in saludo1
 "Ho" in saludo1
-"H" not in saludo1
+"W" not in saludo1
 
 # Comprobar el número de veces que aparece un elemento.
 saludo_repe = 8 * saludo1
