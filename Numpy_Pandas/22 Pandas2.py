@@ -155,3 +155,4 @@ df['Provincia'] = df['Provincia'].astype('string')
 vizcainos = df.query('Provincia !="48"')
 vizcainos['Facturacion'].max()
 vizcainos['Facturacion'].min()
+
