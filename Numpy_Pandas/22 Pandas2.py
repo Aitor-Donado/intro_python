@@ -55,11 +55,13 @@ df.info()
 
 df['Catastro'] = df['Catastro'].astype('string')
 df['IdCliente'] = df['IdCliente'].astype('string')
+
+df["Producto"].unique()
 df['Producto'] = df['Producto'].astype('category')
+
+df['TipoProducto'].unique()
 df['TipoProducto'] = df['TipoProducto'].astype('category')
 
-
-df.info()
 
 # ### Corregimos el resto de errores
 # Si alguna columna no se ha modificado su tipo, puede ser porque contenga errores. Modificamos el tipo indicando que se ignoren los errores.
@@ -85,7 +87,7 @@ df.head()
 
 # Generar variables dummies
 df_dummies_Producto = pd.get_dummies(df, columns=['Producto'])
-df_dummies_Producto.head()
+df_dummies_Producto.head(15)
 
 # Los Dummies son booleanos
 df_dummies_Producto.info()
@@ -101,19 +103,19 @@ df_dummies_Producto.head()
 
 df_productos_cliente = df_dummies_Producto.groupby(['IdCliente', 'Fecha'])['Facturacion'].sum().reset_index()
 
-df_productos_cliente.head()
+df_productos_cliente.head(30)
 
 #__________________________________
 # Consultas a dataframes con query
 #__________________________________
 
-# Contrataciones del mes de marzo
+# Contrataciones del mes de mayo
 df.info()
 
-df.query('Fecha.dt.day == 3')
+df.query('Fecha.dt.month == 5')
 
 # Esto da error
-df.query('AltaCliente.dt.day <= 10')
+df.query('AltaCliente.dt.month <= 5')
 
 # No funciona pq AltaCliente no es de tipo datetime
 df['AltaCliente'] = pd.to_datetime(df['AltaCliente'], errors='coerce')
@@ -124,8 +126,9 @@ df['IdCliente'] = df['IdCliente'].astype('int')
 df.query('AltaCliente.dt.day <= 10 or IdCliente<100000')
 
 # ### Consultas más complejas
-producto = 'N01'
-df.query('AltaCliente.dt.day <= 10 and Producto == @producto')
+productos = ['N01', 'N06']
+for producto in productos:
+    df.query('AltaCliente.dt.day <= 10 and Producto in @producto')
 
 producto = 'N01'
 tipoprod = 'Servicio sin cuota'
@@ -134,9 +137,9 @@ df.query('AltaCliente.dt.day <= 10 and (Producto == @producto or TipoProducto ==
 
 # Extraemos del CatastroMax el código de área
 # Para ello eliminamos primero todos los espacios y posteriormente extraemos el texto de las posiciones 3 a 4
-df['Provincia'] = df['CatastroMax'].str.replace(" ","")
-df['Provincia'] = df['Provincia'].str.slice(3,5)
-df.head()
+#df['Provincia'] = df['CatastroMax'].str.replace(" ","")
+df['Provincia'] = df['CatastroMax'].str.slice(4,6)
+df.head(20)
 
 
 # ### Clientes dados de alta en el mes de abril abril
@@ -152,7 +155,7 @@ df.query('Fecha.dt.month == 4')['Facturacion'].sum()
 df.info()
 df['Provincia'] = df['Provincia'].astype('string')
 
-vizcainos = df.query('Provincia !="48"')
+vizcainos = df.query('Provincia =="48"')
 vizcainos['Facturacion'].max()
 vizcainos['Facturacion'].min()
 

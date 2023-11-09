@@ -43,7 +43,8 @@ print(d)
 #________________
 
 serie = pd.Series(data=my_list)
-
+print(serie)
+serie[0]
 # Asignamos etiquetas a la serie
 serie_con_labels = pd.Series(data=my_list, index=labels)
 serie_con_labels["a"]
@@ -72,8 +73,8 @@ serie_con_labels == serie_con_labels4
 #______________________
 # La clave para usar Series, es entender sus índices. 
 # Pandas usa los índices en formato numéricos o texto. 
-ser1 = pd.Series([1,2,3,4],index = ['USA', 'Germany','USSR', 'Japan'])
-ser2 = pd.Series([1,2,5,4],index = ['USA', 'Germany','Italy', 'Japan'])
+ser1 = pd.Series([1,2,3,4], index = ['USA', 'Germany','USSR', 'Japan'])
+ser2 = pd.Series([1,2,5,4], index = ['USA', 'Germany','Italy', 'Japan'])
 
 print(ser1)
 print(ser2)
@@ -87,7 +88,7 @@ b = "b"
 print(a+b)
 
 # Las operaciones se realizan en función del índice
-ser1 + ser2
+ser1 * ser2
 
 ###################
 #   DataFrames    #
@@ -111,7 +112,6 @@ df
 df['W']
 
 type(df)
-
 # ¿Qué tipo de dato hay en la columna W?
 type(df['W'])
 # Como vemos la columna W es simplemente una Serie
@@ -158,7 +158,7 @@ df
 # axis=0 -> filas
 df.shape
 df # Tampoco se borra sin el inplace
-df.drop('E', axis=0, inplace=True)
+df.drop('A', inplace=True)
 df
 
 # ** Selección de filas **
@@ -184,8 +184,7 @@ df.loc[['A','B'],['W','Y']]
 
 # Selección de 2 filas y todas las columnas.
 df.loc[['A','B'],:]
-# o bien
-df.loc[['A','B'],:]
+
 
 # También podríamos haberlo hecho así:
 # Las dos primeras filas
@@ -208,9 +207,9 @@ df.loc[['A','B'],df.columns[2:]]
 #__________________________
 
 # Una importante característica de Pandas es la selección condicional de manera muy similar a Numpy:
-df>0
+df > 0
 
-df<0
+df < 0
 
 df[df>0]
 
@@ -240,7 +239,7 @@ df[df['W']>0][['Y','X']]
 # Deberemos encerrar entre paréntesis cada una de las condiciones:
 df
 
-df[(df['W']>0) & (df['Y'] > 1)]
+df[(df['W']<0) & (df['Y'] < 1)]
 
 # Lo contrario de una condición usando ~
 df[(df['W']>0) & ~(df['Y'] > 1)]
@@ -284,6 +283,7 @@ df
 outside = ['G1','G1','G1','G2','G2','G2']
 inside = [1,2,3,1,2,3]
 hier_index = list(zip(outside,inside))
+
 hier_index = pd.MultiIndex.from_tuples(hier_index)
 
 print(outside)
@@ -319,7 +319,6 @@ df.xs(('G1',1))
 ####################
 # Valores perdidos #
 ####################
-
 import numpy as np
 import pandas as pd
 
@@ -333,7 +332,6 @@ df.dropna()
 
 # Si queremos columnas "íntegras"
 df.dropna(axis=1)
-
 
 df.dropna(thresh=2) # Elimina a partir de 2 valores nan
 
@@ -375,6 +373,7 @@ grupo.sum()
 # Ejecutado todo de una vez
 df.groupby('Compañía').sum()
 
+
 # Una función numérica sólo funcionará con números
 df.groupby('Compañía')["Ventas"].mean()
 df.groupby('Compañía')["Ventas"].std()
@@ -383,7 +382,7 @@ df.groupby('Compañía')["Ventas"].std()
 df.groupby('Compañía').count()
 
 # Podemos hacer un 'describe' para ver las características de nuestra agrupación de datos
-grupo.describe()
+grupo.describe(include="all")
 
 # describe puede mostrar información de variables no numéricas en los dataframes, NO EN LOS GRUPOS
 df.describe(include="all")
@@ -419,7 +418,6 @@ df3 = pd.DataFrame({'A': ['A8', 'A9', 'A10', 'A11'],
                         'E': ['D8', 'D9', 'D10', 'D11']},
                         index=[7, 8, 9, 10])
 
-
 print (df1)
 print (df2)
 print (df3)
@@ -437,7 +435,7 @@ Repite índices y nombres de columna
 
 pd.concat([df1,df2,df3])
 
-pd.concat([df1,df2,df3],axis=1)
+pd.concat([df1,df2,df3], axis=1)
 
 
 #____________
@@ -459,7 +457,7 @@ derecha
 
 # 4 diferentes tipos de fusionado: inner, left, rigth, outer
 # Este es el caso más fácil en que las claves coinciden
-pd.merge(izquierda,derecha,how='inner',on='key')
+pd.merge(izquierda, derecha, how='inner', on='key')
 
 
 # Con más de una clave
@@ -525,11 +523,11 @@ derecha = pd.DataFrame({'C': ['C0', 'C2', 'C3'],
                     'D': ['D0', 'D2', 'D3']},
                     index=['K0', 'K2', 'K3'])
 izquierda
-
 derecha
 
 # Observamos que el registro 2 (K1), al no existir en derecha, no se completa a nivel de columnas C y D
 izquierda.join(derecha)
+derecha.join(izquierda)
 
 izquierda.join(derecha, how='outer')
 
@@ -545,7 +543,7 @@ derecha = pd.DataFrame({'color': ['Blanco', 'Blanco', 'Blanco', 'Blanco'],
                         'Puertas': ['3', '4', '5', '2']},
                         index = ['Audi', 'Hyundai', 'Dacia', 'Mercedes'])
 
-# Esto me da error yaque hay dos columnas con el mismo nombre
+# Esto me da error ya que hay dos columnas con el mismo nombre
 izquierda.join(derecha)
 izquierda.join(derecha, lsuffix='_izquierda', rsuffix='_derecha')
 
@@ -556,7 +554,7 @@ izquierda.join(derecha, lsuffix='_izquierda', rsuffix='_derecha')
 
 import pandas as pd
 df = pd.DataFrame({'col1':[1,2,3,4],'col2':[444,555,666,444],'col3':['abc','def','ghi','xyz']})
-df.head()
+df.tail()
 
 
 # ### Información sobre los valores únicos de una columna
@@ -581,21 +579,26 @@ nuevodf
 # https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.apply.html
 
 def doble(x):
-    return x**2
+    return x*2
 
 
 doble(6)
 
 # Aplicamos la función cuadrado A TODOS los elementos de col1.  Es una operación columnar, por tanto no hace falta iterar registro a registro
-df['col1'].apply(doble)
+df['col1'] = df['col1'].apply(doble)
 
 
 # Mismo resultado de diferente manera
 df['col1'].apply(lambda x: x**2)
 
+def anade_h(string):
+    if len(string)==0:
+        return string + "h"
+    else:
+        return string
 
 # Obtener el tamaño de las diferentes filas
-df['col3'].apply(len)
+df['col3'].apply(anade_h)
 
 
 # Eliminar columnas (ojo, hasta no usar inplace no se eliminan del set original)
