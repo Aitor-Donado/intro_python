@@ -1,3 +1,7 @@
+.gitignore
 *Soluciones*
 **/*Soluciones*
 /Visualización
+/POO/Cifrado simétrico.py
+/POO/Personal.py
+/POO
