@@ -2,9 +2,6 @@
 # coding: utf-8
 
 # # Ejercicio Pandas 4
-
-
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -19,7 +16,10 @@ pd.set_option('display.max_columns', None) #comando para mostrar todas las colum
 
 
 # #### Cargar el conjunto de datos dimension_cliente.csv.  
-# Guargar el conjunto de datos en un dataframe llamado cliente. Haz un preview de los primeros registros.  Extrae las dimensiones del dataset y la información (por columnas) de los datos (nombre, tipo de variable, completidud)
+# Guardar el conjunto de datos en un dataframe llamado cliente. 
+# Haz un preview de los primeros registros.  
+# Extrae las dimensiones del dataset y la información (por columnas) de los datos 
+# (nombre, tipo de variable, completitud)
 
 
 
