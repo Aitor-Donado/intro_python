@@ -164,6 +164,25 @@ evaluar_cuadratica(2, 2, 3, x=8)
 # evaluar_cuadratica(a=2, 2, 3, 8)
 # Siempre los keyword arguments AL FINAL
 
+# Si quiero forzar que los argumentos sólo puedan introducirse por clave-valor
+# puedo reescribir la función así (Sólo cambia el asterisco en los parámetros):
+def evaluar_cuadratica(*, a, b, c, x):
+    '''
+    a, b, c: valores numéricos de los coeficientes de una ecuación
+    de segundo grado
+    x: valor de la variable x.
+    '''
+    solucion = a*x*x+b*x+c
+    return solucion
+
+# Si intentamos introducir ahora un argumento posicional obtendremos:
+"""TypeError: evaluar_cuadratica() takes 0 positional arguments but 3 positional arguments (and 1 keyword-only argument) were given"""
+# Error:
+evaluar_cuadratica(2, 2, 3, x=8)
+# Correcto:
+evaluar_cuadratica(x = 8, c = 3, a = 2, b = 2)
+
+
 # ¿Y si quiero calcular f(8) siendo f = x²+3?
 evaluar_cuadratica(a=1, c=3, x=8)
 
