@@ -50,6 +50,7 @@ flat_dict_home = {}
 for clave, valor in flat_data.items():
     if "homeValue" in clave:
         nueva_clave_str = clave[:-10] + ".name"
+        print(nueva_clave_str)
         nueva_clave = flat_data[nueva_clave_str]
         flat_dict_home[nueva_clave] = valor
     if "homeTotal" in clave:
