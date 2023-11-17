@@ -105,6 +105,9 @@ type(j)
 positivos = 1
 negativos = -30
 type(negativos)
+treinta_mil = 30_000
+cincuenta_mil = 50_000
+treinta_mil + cincuenta_mil
 
 # Flotantes
 positivos = 2.3
