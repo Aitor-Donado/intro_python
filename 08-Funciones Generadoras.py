@@ -86,14 +86,4 @@ next(lista_iterable)
 #__________#
 # Solución #
 #----------#
-def saca_subcadena(archivo, subcadena):
-    with open(archivo, 'r') as f:
-        for linea in f:
-            if subcadena in linea:
-                yield linea
 
-
-saca_quijote = saca_subcadena("datos/quijote.txt", "Dulcinea")
-
-while input("¿Detener? (s): ") != "s":
-    print(next(saca_quijote))

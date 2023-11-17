@@ -23,7 +23,7 @@ Created on Tue Mar  7 17:49:57 2023
 # Errores de nombre
 # Al ejecutar alguna función, método... que no se encuentra definido. Devuelven el código NameError:
 
-pint("Hola")
+# pint("Hola")
 
 # Mensaje -> NameError: name 'pint' is not defined
 # La mayoría de errores sintácticos y de nombre los identifican
@@ -59,13 +59,13 @@ if len(lista_vacia) > 0:
 numerador = input("Introduce un número: ")
 denominador = 5
 print("El numerador {} dividido entre el denominador {} es {}".
-      format(numerador, denominador, numerador/denominador))
+    format(numerador, denominador, numerador/denominador))
 
 # Como ya sabemos este error se elimina transformando la cadena a entero o flotante:
 numerador = float(input("Introduce un número: "))
 denominador = 5
 print("El numerador {} dividido entre el denominador {} es {}".
-      format(numerador, denominador, numerador/denominador))
+    format(numerador, denominador, numerador/denominador))
 
 print("Sigo")
 # Sin embargo si se introduce un texto, no es posible evitar el error
@@ -92,7 +92,7 @@ try:
     numerador = float(input("Introduce un número: "))
     denominador = 5
     print("El numerador {} dividido entre el denominador {} es {}".
-          format(numerador, denominador, numerador/denominador))
+        format(numerador, denominador, numerador/denominador))
 except:
     print("Ha ocurrido un error, introduce bien el número")
 
@@ -105,8 +105,8 @@ while(True):
         numerador = float(input("Introduce un número: "))
         denominador = 5
         print("El numerador {} dividido entre el denominador {} es {}".
-              format(numerador, denominador, numerador/denominador))
-        break  # Importante romper la iteración si todo ha salido bien
+            format(numerador, denominador, numerador/denominador))
+        break  # Importante romper la iteración while si todo ha salido bien
     except:
         print("Ha ocurrido un error, introduce bien el número")
 
@@ -118,12 +118,12 @@ while(True):
         numerador = float(input("Introduce un número: "))
         denominador = 5
         print("El numerador {} dividido entre el denominador {} es {}".
-              format(numerador, denominador, numerador/denominador))
+            format(numerador, denominador, numerador/denominador))
     except:
         print("Ha ocurrido un error, introduce bien el número")
     else:
         print("Todo ha funcionado correctamente")
-        break  # Importante romper la iteración si todo ha salido bien
+        break  # Importante romper la iteración while si todo ha salido bien
 
 # Bloque finally
 # El contenido del bloque finally se ejecuta al final, ocurra o no ocurra un error:
@@ -133,7 +133,7 @@ while(True):
         numerador = float(input("Introduce un número: "))
         denominador = 5
         print("El numerador {} dividido entre el denominador {} es {}".
-              format(numerador, denominador, numerador/denominador))
+            format(numerador, denominador, numerador/denominador))
     except:
         print("Ha ocurrido un error, introduce bien el número")
     else:
@@ -155,7 +155,7 @@ try:
     numerador = float(input("Introduce un número: "))
     denominador = float(input("Introduce otro número: "))
     print("El numerador {} dividido entre el denominador {} es {}".
-          format(numerador, denominador, numerador/denominador))
+        format(numerador, denominador, numerador/denominador))
 except Exception as e:  # guardamos la excepción como una variable e
     print("Ha ocurrido un error =>", type(e).__name__)
     if type(e).__name__ == "ValueError":
@@ -175,7 +175,7 @@ try:
     numerador = float(input("Introduce un número: "))
     denominador = float(input("Introduce otro número: "))
     print("El numerador {} dividido entre el denominador {} es {}".
-          format(numerador, denominador, numerador/denominador))
+        format(numerador, denominador, numerador/denominador))
 except ValueError:
     print("Debes introducir una cadena que sea un número")
 except ZeroDivisionError:
@@ -188,14 +188,11 @@ except Exception as e:
 #############################
 
 # En algunas ocasiones quizá nos interesa llamar un error manualmente.
-
-
 def mi_funcion(algo=None):
     if algo is None:
         print("Error! No se permite un valor nulo (con un print)")
     else:
         print(algo)
-
 
 print(None)
 mi_funcion()
@@ -204,8 +201,6 @@ mi_funcion()
 # ----------------------
 # Instrucción raise
 # Gracias a raise podemos lanzar un error manual pasándole el identificador.
-
-
 def mi_funcion(algo=None):
     if algo is None:
         raise ValueError("Error! No se permite un valor nulo")
@@ -217,8 +212,6 @@ mi_funcion()
 
 # Luego simplemente podemos añadir un except para tratar
 # esta excepción que hemos lanzado:
-
-
 def mi_funcion(algo=None):
     try:
         if algo is None:
@@ -236,6 +229,9 @@ mi_funcion()
 # Crear una función que genere una excepción de tipo "ValueError" si el usuario
 # introduce una edad por consola que sea negativa o mayor de 120 años.
 
+
+
+
 # A continuación, un bucle infinito "while True" que pida la edad y trate el error
 # generado por la función. El bucle parará cuando la edad sea correcta.
 
@@ -244,23 +240,3 @@ mi_funcion()
 #----------#
 
 
-def introduce_edad():
-    edad = int(input("Dime tu edad: "))
-    if edad < 0 or edad > 120:
-        raise ValueError("La edad está fuera de los límites")
-    else:
-        return edad
-
-
-while True:
-    try:
-        edad = introduce_edad()
-    except TypeError as error:
-        print("No puedes introducir nada más que números enteros", error)
-    except ValueError as error:
-        print(error)
-    else:
-        print("Todo ha ido bien. Tienes", edad, "años")
-        break
-    finally:
-        print("Me ejecuto siempre")

@@ -38,6 +38,9 @@ mi_lista = [10, 2, 6, 3]
 resultados = division_recursiva_suma(mi_lista)
 print("Resultado de la división recursiva:", resultados)
 
+
+
+
 def division_recursiva_producto(lista_original, indice=None, producto_anterior=1):
     # Si no se proporciona un índice inicial, comenzamos desde el último elemento
     if indice is None:
@@ -70,7 +73,6 @@ def mult_list_recur(lista):
         return lista[0]
     else:
         return lista[0]*mult_list_recur(lista[1:])
-
 
 
 def div_list_recur(lista):
