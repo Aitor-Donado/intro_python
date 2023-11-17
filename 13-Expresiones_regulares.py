@@ -92,10 +92,8 @@ x, veces = re.subn(patron, "perr", texto)
 Los caracteres especiales para los patrones son:
     "." Coincide con cualquier carácter excepto una nueva línea.
     "^" Coincide con el inicio de la cadena.
-    "$" Coincide con el final de la cadena o justo antes de la nueva línea en
-                  el final de la cadena.
-    "*" Coincide con 0 o más repeticiones (codiciosos) del RE anterior.
-                  Greedy significa que coincidirá con tantas repeticiones como sea posible.
+    "$" Coincide con el final de la cadena o justo antes de la nueva línea en el final de la cadena.
+    "*" Coincide con 0 o más repeticiones (codiciosos) del RE anterior. Greedy significa que coincidirá con tantas repeticiones como sea posible.
     "+" Coincide con 1 o más repeticiones (codiciosos) del RE anterior.
     "?" Coincide con 0 o 1 (codicioso) del RE anterior.
     *?,+?,?? Versiones no codiciosas de los tres caracteres especiales anteriores.

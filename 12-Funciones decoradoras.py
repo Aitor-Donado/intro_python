@@ -9,10 +9,8 @@ Created on Sat Mar 11 16:40:26 2023
 ###############
 # Decoradores #
 ###############
-
 # Un decorador es una funcion que se dedica a modificar el resultado de otra función
 # Tiene que recibir esa función como parámetro
-
 
 def funcion_fea():
     return "deVUelVO aLgO FeO"
@@ -28,12 +26,22 @@ def decoradora(funcion_poco_agraciada):
 
 funcion_fea_decorada = decoradora(funcion_fea)
 
+funcion_fea()
 funcion_fea_decorada()
 
 funcion_fea()
+
+
+# Lo bueno es que la función decoradora es reutilizable para cualquier otra 
+# función que devuelva algo feo
+def devuelvo_algo_feo():
+    return "He hErEdaDO un CaMafeo mUy fEO"
+
+devuelvelo_decorado = decoradora(devuelvo_algo_feo)
+devuelvelo_decorado()
+
+
 # Representación compacta de una función decoradora
-
-
 def decoradora(funcion_fea):
     def decorada():
         resultado_feo = funcion_fea()
@@ -41,9 +49,8 @@ def decoradora(funcion_fea):
         return resultado_bonito
     return decorada
 
+
 # Si declaro la decoradora inmediatamente sobre la definición de la funcion fea
-
-
 @decoradora
 def funcion_fea():
     return "deVUelVO aLgO FeO"
@@ -52,14 +59,16 @@ def funcion_fea():
 # ésta se comporta siempre como la función decorada
 funcion_fea()
 
-# Otro ejemplo, controlar la entrada a una función
+# Lógicamente, las funciones decoradoras no están para modificar strings feos
+# El objetivo es poder centrarse en operaciones en la "funcion_fea" y usar la
+# decoradora para tratar entradas o salidas.
 
+
+# Ejemplo, controlar la entrada a una función
 # Ahora la función fea es esta división que devuelve error con y = 0
-
 
 def division(x, y):
     return x/y
-
 
 def comprueba_entradas(func):
     def comprobacion(x, y):
@@ -76,13 +85,12 @@ def division(x, y):
 
 
 division(2, 0)
-
 division(2, 3)
 
 # La clave de definir bien un decorador es que reciba una función y devuelva
 # otra función declarada dentro de ella y que añada algo a la recibida
 
-
+# Función decoradora que se asegura de que una edad esté bien introducida
 def corrige_datos(func):
     def corrector():
         edad = func()

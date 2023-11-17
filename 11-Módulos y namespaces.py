@@ -166,11 +166,12 @@ def funcion_exterior():
         variable_exterior = "Modifico la variable exterior"
         variable_interior = "Variable creada en la función interior"
         return variable_interior
+    
+    # Ejecuto la función definida interiormente
     variable_interior_retornada = funcion_interior()
     # Ahora si puedo usarla en la función exterior
     print(variable_interior_retornada)
-    print("La variable exterior modificada desde la función interior:",
-          variable_exterior)
+    print("La variable exterior modificada desde la función interior:", variable_exterior)
 
 
 funcion_exterior()
