@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Jul 12 10:14:50 2018
-
-@author: Borja
+@author: Aitor Donado
 """
-
-%reset -f
     
 # Division entre suma de elementos anteriores
 """ función que reciba como parámetro una lista (que llamaremos lista 
@@ -91,7 +87,8 @@ print(div_list_recur([4,5,100]))
 # Doble de la funcion de Fibonacci.
 def doble(x):
     return 2*x
-       
+    
+
 def fib_recur2(n):
     if n == 0:
         return 0
@@ -128,7 +125,6 @@ fib_recur(9)
 
 
 # Crear una funcion que replique la tabla del 7 sin multiplicaciones.
-
 def mult7(n):
     if n == 0:
         return 0

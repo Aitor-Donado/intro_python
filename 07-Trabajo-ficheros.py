@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Mar  2 10:03:25 2023
-
 @author: Aitor Donado.
 """
 
 from funciones.circulo import area as area
 import funciones.circulo as circulo
-import os
-os.chdir(r"/home/laptop/Formación/Curso Python/SAIATUZ/2 Python/01 Introducción/Teoría")
+
+# Si el archivo .py estuviera más arriba en el arbol de carpetas:
+# from ..funciones.circulo import area
+
+# import os
+# os.chdir(r"/home/laptop/Formación/Curso Python/SAIATUZ/2 Python/01 Introducción/Teoría")
 
 
 # Cargarmos un archivo de python creado.
@@ -18,8 +20,8 @@ os.chdir(r"/home/laptop/Formación/Curso Python/SAIATUZ/2 Python/01 Introducció
 print(circulo.area(25))
 print(circulo.perimetro(35))
 
-
 area(4)
+# perimetro(35)
 
 """
 # Otra forma de posibilitar la importación es introducir la ubicación en el path
@@ -30,8 +32,8 @@ import circulo
 
 print(circulo.area(25))
 print(circulo.perimetro(35))
-
 """
+
 #############################
 # Leer un archivo de texto. #
 #############################

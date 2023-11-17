@@ -1,13 +1,27 @@
-def flatten_json(json_obj, prefix=''):
+def flatten_json(json_obj: dict, prefix: str = '') ->dict:
+    """
+    Convierte un diccionario con claves anidadas en un diccionario plano.
+    Todas las claves son la sucesión (path) de claves hasta llegar a los valores en el original.
+    Los valores del diccionario resultante no contienen diccionarios
+    """
+    # Creamos el diccionari que servirá de salida
     flat_dict = {}
+    # Si lo que se ha introducido no es un diccionario, lo devolvemos como diccionario 
+    # para evitar errores en las llamadas recursivas
+    if not isinstance(json_obj, dict) and not isinstance(json_obj, list):
+        return {prefix: json_obj}
     for clave, valor in json_obj.items():
+        # Concatena las claves sólo si hay path ya concatenado, si no, es la clave misma
         nueva_clave = f"{prefix}.{clave}" if prefix else clave
         if isinstance(valor, dict):
+            # Si el valor es un diccionario, se autollama recursivamente
             flat_dict.update(flatten_json(valor, nueva_clave))
         elif isinstance(valor, list):
+            # Si el valor es una lista, añade el índice a la clave y se autollama recursivamente
             for i, item in enumerate(valor):
                 flat_dict.update(flatten_json(item, f"{nueva_clave}.{i}"))
         else:
+            # Si no es dict ni list, guarda clave y valor al dict plano
             flat_dict[nueva_clave] = valor
     return flat_dict
 
@@ -30,3 +44,14 @@ def row_from_flat_json(flat_data: dict, clave_columna: str, clave_dato: str, suf
             nueva_clave = flat_data[nueva_clave_str] + sufijo
             flat_dict[nueva_clave] = valor
     return flat_dict
+
+
+if __name__ == "__main__":
+    diccionario = {"Clave_principal1" : "valor1", 
+                "Clave_principal2" : "valor2", 
+                "Clave_principal3" : {"Clave_anidada1": "Valor anidado en primer nivel"}, 
+                "Clave_principal4" : [{"Clave_anidada1": "Valor anidado en lista"}, {"Clave_anidada2": "Valor anidado en lista"}], 
+                "Clave_principal5" : ["Valor anidado en lista", "Valor anidado en lista"], 
+                }
+    
+    print(flatten_json(diccionario))
