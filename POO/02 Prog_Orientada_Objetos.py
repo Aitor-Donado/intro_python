@@ -26,10 +26,8 @@ Los atributos pueden manejarse de distintas formas, por ejemplo
 se pueden crear dinámicamente (al vuelo) en los objetos.
 """
 
-
 class Galleta:
     pass
-
 
 pretzel = Galleta()
 pretzel.sabor = "salado"
@@ -37,6 +35,13 @@ pretzel.color = "marrón"
 
 print(f"El sabor del pretzel es {pretzel.sabor} "
       f"y el color {pretzel.color}")
+
+pretzel.__getattribute__("color")
+pretzel.__getattribute__("sabor")
+
+# Podemos obtener todos los atributos como un diccionario
+pretzel.__dict__
+dir(pretzel)
 
 maria = Galleta()
 # maria.sabor = "dulce"
@@ -53,13 +58,10 @@ La flexibilidad de los atributos dinámicos puede llegar a ser muy útil,
 Es más práctico definir unos atributos básicos en la clase. 
 De esa manera todas las galletas podrían tener atributos por defecto:
 """
-
-
 class Galleta:
     textura = "rígida"
     chocolate = False
     nata = False
-
 
 principe = Galleta()
 
@@ -85,7 +87,6 @@ en todas las galletas desde el principio.
 Además es posible consultar el valor por defecto que deben tener las galletas 
 haciendo referencia al atributo en la definición de la clase:
 """
-
 print(Galleta.chocolate)
 
 """
@@ -93,11 +94,8 @@ Si cambiamos ese atributo de clase (que no de objeto) a True, las siguientes
 galletas se crearán con chocolate, es decir, habremos modificado las 
 instrucciones de creación de los objetos:
 """
-
-
 class Galleta:
     chocolate = False
-
 
 Galleta.chocolate = True
 
@@ -118,14 +116,11 @@ que evidentemente nos permiten definir funcionalidades para llamarlas desde las 
 Definir un método es bastante simple, sólo tenemos que añadirlo en la clase y 
 luego llamarlo desde el objeto con los paréntesis, como si de una función se tratase:
 """
-
-
 class Galleta:
     chocolate = False
 
     def saludar():
         print("Hola, soy una galleta muy sabrosa")
-
 
 artiach = Galleta()
 
@@ -159,7 +154,6 @@ print(campurriana)
 # Poder acceder al propio objeto desde un método es muy útil, ya que nos permite
 # acceder a sus atributos y modificarlos
 
-
 class Galleta:
     chocolate = False
 
@@ -177,8 +171,8 @@ print(principe.chocolate)
 ######################
 # Métodos especiales #
 ######################
-
-# Se llaman especiales porque la mayoría ya existen de forma oculta y sirven para tareas específicas.
+# Se llaman especiales porque la mayoría ya existen de forma oculta y 
+# sirven para tareas específicas.
 
 # -------------
 # Constructor
@@ -193,7 +187,7 @@ class Galleta:
 cookie = Galleta()
 
 # La finalidad del constructor es construir los objetos.
-# Por es0 permite sobreescribir el método que crea los objetos, permitiéndonos enviar
+# Por eso permite sobreescribir el método que crea los objetos, permitiéndonos enviar
 # datos desde el principio para construirlo:
 
 
@@ -230,7 +224,6 @@ Todos los objetos se borran automáticamente de la memoria al finalizar el progr
 aunque también podemos eliminarlos expresamente pasándolos a la función del():
 """
 
-
 class Galleta:
     chocolate = False
     sabor = "insipida"
@@ -262,12 +255,11 @@ artiach.__del__()
 #######
 """
 El método str es el que devuelve la representación de un objeto en forma de cadena. 
-Un momento en que se llama automáticamente es cuando imprimirmos una variable por pantalla.
+Un momento en que se llama automáticamente es cuando imprimimos una variable por pantalla.
 
 Por defecto los objetos imprimen su clase y una dirección de memoria, pero eso puede cambiarse 
 sobreescribiendo el comportamiento:
 """
-
 
 class Galleta:
     chocolate = False
@@ -298,21 +290,24 @@ mostrar algo por pantalla, ese es el funcionamiento que se espera de él.
 #######
 # len #
 #######
-
 # Normalmente está ligado a colecciones, pero nada impide definirlo en una clase.
-# Por defecto no existe en los objetos aunque es el que se ejecuta al pasarlos a la función len().
-
+# Por defecto no existe en los objetos aunque es el que se ejecuta al pasarlos 
+# a la función len().
 
 class Cancion:
 
     def __init__(self, autor, titulo, duracion):  # en segundos
         self.duracion = duracion
+        self.autor = autor
+        self.titulo = titulo
 
     def __len__(self):
         return self.duracion
 
 
 cancion = Cancion("Queen", "Don't Stop Me Now", 210)
+cancion.autor
+cancion.titulo
 
 print(len(cancion))
 print(cancion.__len__())

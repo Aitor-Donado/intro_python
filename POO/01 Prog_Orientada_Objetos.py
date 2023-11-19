@@ -14,14 +14,17 @@ Created on Tue Mar  7 20:03:06 2023
 
 numero = 10
 type(numero)
+
 # En este caso numero es un objeto de la clase int
 
+lista = list((1,2,3))
+type(lista)
+
+type(type(lista))
+
 # Incluso las funciones en Python son instancias del tipo function:
-
-
 def hola():
     pass
-
 
 type(hola)
 
@@ -30,10 +33,12 @@ type(hola)
 # Definición de clase #
 #######################
 
+# Los nombres de los tipos empiezan siempre en mayúscula
 # La clase más sencilla
 class Galleta:
     pass
 
+type(Galleta)
 
 """
 Instancias de clase
@@ -75,3 +80,5 @@ print(type(oreo).__name__)
 print(maria.__class__.__name__)
 
 # Resumiendo: los objetos son instancias de una clase.
+isinstance(oreo, Galleta)
+isinstance(maria, Galleta)
