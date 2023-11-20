@@ -9,25 +9,35 @@ Created on Mon Mar 13 17:46:48 2023
 ############
 # Herencia #
 ############
-
 """
 La Herencia permite definir clases con características derivadas de otras que 
 no necesitan definirse en las clases herederas. Aunque pueden sobreescribirse.
 """
-
-
+#----------------------------
+# Clase padre (o superclase)
+#----------------------------
 class Mamifero:
     def __init__(self, comestible):
         self.patas = 4
         self.cola = True
         self.comestible = comestible
 
+    # Los métodos correr y saltar son heredables por cualquier mamífero
     def correr(self):
         print("Este animal corre")
 
     def saltar(self):
         print("Este animal salta")
+    
+    def me_lo_como(self):
+        if self.comestible:
+            print("Te has comido un mamífero")
+        else:
+            print("No puedes comerte este animal")    
 
+#---------------------------
+# Clases hijo (o subclases)
+#---------------------------
 
 class Animal_de_granja(Mamifero):
     def __init__(self, comestible):
@@ -36,11 +46,19 @@ class Animal_de_granja(Mamifero):
         self.comestible = comestible
         self.en_choza = False
 
+    # Hay dos métodos nuevos que permiten modificar un atributo que no existía en la superclase
+    # Los heredarán las subclases
     def guardar_en_choza(self):
         self.en_choza = True
 
     def sacar_de_choza(self):
         self.en_choza = False
+
+    def me_lo_como(self):
+        if self.comestible:
+            print("Te has comido un animal de granja")
+        else:
+            print("No puedes comerte este animal")
 
 
 class Animal_domestico(Animal_de_granja):
@@ -52,20 +70,26 @@ class Animal_domestico(Animal_de_granja):
         self.en_choza = False
         self.en_casa = False
 
+    # Hay dos métodos nuevos que permiten modificar un atributo que no existía en la superclase
     def guardar_en_casa(self):
         self.en_casa = True
 
     def sacar_de_casa(self):
         self.en_casa = False
 
+    def me_lo_como(self):
+        print(f"No te puedes comer a {self.nombre}")
+        raise NotImplementedError("Este método no está disponible en la subclase")
 
-ciervo = Mamifero(True)
+
+ciervo = Mamifero(comestible = True)
 ciervo.comestible
 ciervo.correr()
 # El ciervo no se puede meter en una choza
 ciervo.guardar_en_choza()
+ciervo.me_lo_como()
 
-cerdo = Animal_de_granja(True)
+cerdo = Animal_de_granja(comestible = True)
 cerdo.comestible
 cerdo.correr()
 cerdo.cola
@@ -76,12 +100,15 @@ cerdo.en_choza
 cerdo.sacar_de_choza()
 cerdo.en_choza
 
+cerdo.me_lo_como()
+
+burro = Animal_de_granja(comestible = False)
+burro.me_lo_como()
 
 perro = Animal_domestico("Lassie")
 # Este atributo no tiene un método que lo modifique
 perro.comestible
 perro.nombre
-
 
 # Los métodos heredados siguen funcionando
 perro.en_choza
@@ -93,6 +120,16 @@ perro.en_choza
 perro.correr()
 perro.saltar()
 
+# Y además tieme métodos nuevos
+perro.en_casa
+perro.guardar_en_casa()
+perro.en_casa
+perro.sacar_de_casa()
+perro.en_casa
+
+perro.me_lo_como()
+
+
 # ____________________________________________________
 # Para no tener que reescribir la funcion __init__
 
@@ -103,11 +140,18 @@ class Mamifero:
         self.cola = True
         self.comestible = comestible
 
+    # Los métodos correr y saltar son heredables por cualquier mamífero
     def correr(self):
         print("Este animal corre")
 
     def saltar(self):
         print("Este animal salta")
+    
+    def me_lo_como(self):
+        if self.comestible:
+            print("Te has comido un mamífero")
+        else:
+            print("No puedes comerte este animal")    
 
 
 class Animal_de_granja(Mamifero):
@@ -121,6 +165,12 @@ class Animal_de_granja(Mamifero):
     def sacar_de_choza(self):
         self.en_choza = False
 
+    def me_lo_como(self):
+        if self.comestible:
+            print("Te has comido un animal de granja")
+        else:
+            print("No puedes comerte este animal")
+
 
 class Animal_domestico(Animal_de_granja):
     def __init__(self, nombre):
@@ -133,6 +183,10 @@ class Animal_domestico(Animal_de_granja):
 
     def sacar_de_casa(self):
         self.en_casa = False
+
+    def me_lo_como(self):
+        print(f"No te puedes comer a {self.nombre}")
+        raise NotImplementedError("Este método no está disponible en la subclase")
 
 
 # Los objetos son instancias de su clase y de las clases de las que hereda su clase
@@ -148,12 +202,13 @@ isinstance(ciervo, Animal_domestico)
 isinstance(ciervo, Animal_de_granja)
 isinstance(ciervo, Mamifero)
 
+issubclass(Animal_domestico, Animal_de_granja)
+issubclass(Animal_de_granja, Mamifero)
+issubclass(Animal_domestico, Mamifero)
 #############
 # Ejercicio #
 #___________#
-
-
-# Si transferimos a nuestra base de datos de personal, puedo crear la clase empleado
+# Si transferimos a nuestra aplicacion de personal, puedo crear la clase empleado
 # y a partir de ella crear clases herederas según cargo.
 
 # Las clases "hijo" serán Directivo, Oficinista, Peon

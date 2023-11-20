@@ -15,10 +15,10 @@ binarios abstrayendo toda la parte de escritura y lectura binaria.
 # __________________________
 # Escritura de colecciones (tipos agregados)
 
-
 # Podemos guardar lo que queramos, listas, diccionarios, tuplas...
 from io import open
 import pickle
+
 lista = reyes_espana = {
     "Godos": ["Ataulfo", "Sigerico", "Teodorico", "Eurico", "Leovigildo", "Recaredo", "Suintila", "Sisenando", "Chintila", "Tulga", "Witerico", "Gundemaro", "Sisebuto", "Suintila II", "Recesvinto", "Wamba", "Ervigio", "Witiza", "Rodrigo"],
     "Austrias": ["Felipe I", "Carlos I", "Felipe II", "Felipe III", "Felipe IV", "Carlos II"],
@@ -42,9 +42,10 @@ fichero = open('lista.pckl', 'rb')
 
 # Cargamos los datos del fichero
 lista_fichero = pickle.load(fichero)
-print(lista_fichero)
 
 fichero.close()
+
+print(lista_fichero)
 
 godos = lista_fichero["Godos"]
 austrias = lista_fichero["Austrias"]

@@ -4,7 +4,8 @@
 """
     
 # Division entre suma de elementos anteriores
-""" función que reciba como parámetro una lista (que llamaremos lista 
+""" 
+función que reciba como parámetro una lista (que llamaremos lista 
 original) y devuelva otra lista en la que cada uno de sus elementos 
 sea la división entre el elemento de la lista original que ocupa la 
 misma posición y la suma de los elementos de las posiciones precedentes 
@@ -81,7 +82,7 @@ def div_list_recur(lista):
     else:
         return lista[-1]/(mult_list_recur(lista[:-1]))
 
-
+print(mult_list_recur([4,5,100]))
 print(div_list_recur([4,5,100]))
 
 
@@ -90,6 +91,7 @@ print(div_list_recur([4,5,100]))
 def doble(x):
     return 2*x
     
+
 
 def fib_recur2(n):
     if n == 0:

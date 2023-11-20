@@ -3,12 +3,12 @@
 @author: Aitor Donado.
 """
 
-from funciones.circulo import area as area
+from funciones.circulo import area, perimetro
 import funciones.circulo as circulo
 
 # Si el archivo .py estuviera más arriba en el arbol de carpetas:
 # from ..funciones.circulo import area
-
+area(5)
 # import os
 # os.chdir(r"/home/laptop/Formación/Curso Python/SAIATUZ/2 Python/01 Introducción/Teoría")
 
@@ -17,11 +17,11 @@ import funciones.circulo as circulo
 # En ese archivo hemos definido las funciones que necesitamos.
 # Tienen que estar en la misma carpeta.
 
-print(circulo.area(25))
-print(circulo.perimetro(35))
+print(circulo.area(5))
+print(circulo.perimetro(5))
 
 area(4)
-# perimetro(35)
+perimetro(35)
 
 """
 # Otra forma de posibilitar la importación es introducir la ubicación en el path
@@ -112,7 +112,7 @@ print(contenido2)
 #########################
 
 # Se puede abrir un fichero en modo lectura con escritura,
-# pero éste debe existir préviamente.
+# pero éste debe existir previamente.
 # Además por defecto el puntero estará al principio y si escribimos algo
 # sobreescribiremos el contenido actual
 

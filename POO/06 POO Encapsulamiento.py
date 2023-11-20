@@ -23,6 +23,7 @@ class Persona:
     def get_edad(self):
         return self.__edad
 
+
     def set_edad(self, edad):
         if edad < 0 or edad > 120:
             raise ValueError("La edad no puede ser negativa ni mayor que 120")
@@ -40,8 +41,41 @@ después de validar que el valor de edad es válido."""
 
 vigilante = Persona("Pedro", 50)
 vigilante.set_edad(51)
+vigilante.get_edad()
+
+vigilante.__edad
+
 
 vigilante.saludar()
+
+# Decoradores property y setter
+class Persona:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.__edad = edad
+
+    @property
+    def edad(self):
+        if input("Escribe password: ") == "password":
+            return self.__edad
+        else:
+            return "No te doy la información"
+
+    @edad.setter
+    def edad(self, edad):
+        if edad < 0 or edad > 120:
+            raise ValueError("La edad no puede ser negativa ni mayor que 120")
+        self.__edad = edad
+
+    def saludar(self):
+        print(f'Hola, mi nombre es {self.nombre} y tengo {self.__edad} años')
+
+
+vigilante = Persona("Pedro", 50)
+vigilante.edad = 130
+vigilante.edad = -3
+vigilante.edad = 51
+vigilante.edad
 
 
 class Persona:
@@ -63,6 +97,7 @@ class Persona:
         self.trabajando = not self.trabajando
 
     def sale_de_viaje(self, nueva_ubicacion):
+        print(f"{self.__ubicacion} -----> {nueva_ubicacion}")
         self.__ubicacion = nueva_ubicacion
 
     def esta_en(self):

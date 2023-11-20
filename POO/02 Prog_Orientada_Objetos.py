@@ -241,9 +241,8 @@ pretzel = Galleta("marrón", "salada")
 artiach = Galleta("blanca", "dulce")
 
 del(pretzel)
+del(artiach)
 
-# Los métodos especiales pueden ejecutarse directamente como si fueran métodos normales
-artiach.__del__()
 
 
 # Funciones como str() y len(), también son accesores de los métodos especiales

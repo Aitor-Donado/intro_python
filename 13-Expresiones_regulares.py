@@ -110,40 +110,40 @@ Los caracteres especiales para los patrones son:
     (?P<nombre>...) La subcadena que coincide con el grupo es accesible por nombre.
     (?P=nombre) Coincide con el texto que coincidía anteriormente con el nombre del grupo.
     (?#...)  Un comentario; ignorado
-     (?=...) Coincide si... coincide con el siguiente, pero no consume la cadena.
-     (?!...) Coincide si... no coincide con el siguiente.
-     (?<=...) Coincide si está precedido por... (debe ser de longitud fija).
-     (?<!...) Coincide si no está precedido por... (debe ser de longitud fija).
-     (?(id/nombre)yes|no) Coincide con el patrón sí si el grupo con id/nombre coincide,
+    (?=...) Coincide si... coincide con el siguiente, pero no consume la cadena.
+    (?!...) Coincide si... no coincide con el siguiente.
+    (?<=...) Coincide si está precedido por... (debe ser de longitud fija).
+    (?<!...) Coincide si no está precedido por... (debe ser de longitud fija).
+    (?(id/nombre)yes|no) Coincide con el patrón sí si el grupo con id/nombre coincide,
                             el (opcional) sin patrón de lo contrario.
     
-     Las secuencias especiales constan de "\\" y un carácter de la lista
-     abajo. Si el carácter ordinario no está en la lista, entonces el
-     RE resultante coincidirá con el segundo carácter.
-         \number Coincide con el contenido del grupo del mismo número.
-         \A Coincide solo al comienzo de la cadena.
-         \Z Coincide solo al final de la cadena.
-         \b Coincide con la cadena vacía, pero solo al principio o al final de una palabra.
-         \B Coincide con la cadena vacía, pero no al principio ni al final de una palabra.
-         \d Coincide con cualquier dígito decimal; equivalente al conjunto [0-9] en
-                  patrones de bytes o patrones de cadena con la bandera ASCII.
-                  En patrones de cadena sin la bandera ASCII, coincidirá con todo el
-                  rango de dígitos Unicode.
-         \D Coincide con cualquier carácter que no sea un dígito; equivalente a [^\d].
-         \s Coincide con cualquier carácter de espacio en blanco; equivalente a [\t\n\r\f\v] en
-                  patrones de bytes o patrones de cadena con la bandera ASCII.
-                  En patrones de cadena sin la bandera ASCII, coincidirá con todo el
-                  intervalo de caracteres de espacio en blanco Unicode.
-         \S Coincide con cualquier carácter que no sea un espacio en blanco; equivalente a [^\s].
-         \w Coincide con cualquier carácter alfanumérico; equivalente a [a-zA-Z0-9_]
-                  en patrones de bytes o patrones de cadena con la bandera ASCII.
-                  En patrones de cadenas sin el indicador ASCII, coincidirá con el
-                  rango de caracteres alfanuméricos Unicode (letras más dígitos
-                  más guión bajo).
-                  Con LOCALE, coincidirá con el conjunto [0-9_] más los caracteres definidos
-                  como letras para la configuración regional actual.
-         \W Coincide con el complemento de \w.
-         \\ Coincide con una barra invertida literal.
+    Las secuencias especiales constan de "\\" y un carácter de la lista
+    abajo. Si el carácter ordinario no está en la lista, entonces el
+    RE resultante coincidirá con el segundo carácter.
+        \number Coincide con el contenido del grupo del mismo número.
+        \A Coincide solo al comienzo de la cadena.
+        \Z Coincide solo al final de la cadena.
+        \b Coincide con la cadena vacía, pero solo al principio o al final de una palabra.
+        \B Coincide con la cadena vacía, pero no al principio ni al final de una palabra.
+        \d Coincide con cualquier dígito decimal; equivalente al conjunto [0-9] en
+                patrones de bytes o patrones de cadena con la bandera ASCII.
+                En patrones de cadena sin la bandera ASCII, coincidirá con todo el
+                rango de dígitos Unicode.
+        \D Coincide con cualquier carácter que no sea un dígito; equivalente a [^\d].
+        \s Coincide con cualquier carácter de espacio en blanco; equivalente a [\t\n\r\f\v] en
+                patrones de bytes o patrones de cadena con la bandera ASCII.
+                En patrones de cadena sin la bandera ASCII, coincidirá con todo el
+                intervalo de caracteres de espacio en blanco Unicode.
+        \S Coincide con cualquier carácter que no sea un espacio en blanco; equivalente a [^\s].
+        \w Coincide con cualquier carácter alfanumérico; equivalente a [a-zA-Z0-9_]
+                en patrones de bytes o patrones de cadena con la bandera ASCII.
+                En patrones de cadenas sin el indicador ASCII, coincidirá con el
+                rango de caracteres alfanuméricos Unicode (letras más dígitos
+                más guión bajo).
+                Con LOCALE, coincidirá con el conjunto [0-9_] más los caracteres definidos
+                como letras para la configuración regional actual.
+        \W Coincide con el complemento de \w.
+        \\ Coincide con una barra invertida literal.
 
 """
 

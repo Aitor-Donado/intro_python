@@ -8,8 +8,8 @@ Created on Tue Mar 14 19:00:57 2023
 from abc import ABC, abstractmethod
 # abstractmethod es un decorador que impide utilizar un método
 
-
 class Animales(ABC):
+    @abstractmethod
     def __init__(self, nombre):
         self.nombre = nombre
 

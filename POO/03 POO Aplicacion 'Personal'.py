@@ -9,10 +9,13 @@ Created on Mon Mar 13 17:46:48 2023
 ####################################
 # Programación Orientada a Objetos #
 ####################################
-# Aplicada a una base de datos de "personal"
+# Creamos una aplicación para gestionar el "Personal" de una empresa
 
 import datetime
 
+#----------------------------------
+# Etapa1: Creo una clase "Persona"
+#----------------------------------
 
 class Persona:
     def __init__(self, nombre, apellido1, apellido2):
@@ -30,9 +33,11 @@ class Persona:
             f'Hola, mi nombre es {self.nombre} {self.apellido1} {self.apellido2}')
 
     def ficha(self):
+        print("Biip, Biiiiip")
         self.trabajando = not self.trabajando
 
     def viaja(self, nueva_ubicacion):
+        print(f"{self.ubicacion} -----> {nueva_ubicacion}")
         self.ubicacion = nueva_ubicacion
 
 
@@ -41,7 +46,6 @@ secretario = Persona('Juanito', 'Pérez', 'García')
 
 print(type(director))
 print(type(secretario))
-
 
 director.presentarse()
 secretario.presentarse()
@@ -64,9 +68,9 @@ print(f"¿Dónde está el director? {director.ubicacion}")
 print(f"¿Está trabajando {secretario.nombre}? {secretario.trabajando}")
 print(f"¿Dónde está el secretario? {secretario.ubicacion}")
 
-# Vamos a llevar una contabilidad de los fichajes
-
-
+#----------------------------------------------------------
+# Etapa2: Vamos a llevar una contabilidad de los fichajes
+#----------------------------------------------------------
 class Persona:
     def __init__(self, nombre, apellido1, apellido2, sueldo_hora=20):
         # Características
@@ -93,11 +97,13 @@ class Persona:
 
     def calcula_trabajo(self):
         delta_acum = datetime.timedelta(0)
-        for i in range(0, len(self.fichajes)-1, 2):
-            delta = self.fichajes[i+1] - self.fichajes[i]
-            delta_acum = delta_acum + delta
-            print(
-                f'Jornada {i/2}: Duración {delta}. Duración acumulada {delta_acum}')
+        jornada = 0
+        for entrada, salida in zip(self.fichajes[::2], self.fichajes[1::2]):
+            delta = salida - entrada
+            jornada +=1
+            delta_acum += delta
+            print(f'Jornada {jornada}: Duración {delta}. Duración acumulada {delta_acum}')
+
         return delta_acum
 
     def calcula_sueldo(self):
@@ -106,6 +112,7 @@ class Persona:
 
 
 director = Persona('Juan', 'Pérez', 'López', sueldo_hora=30)
+# El secretario tiene el sueldo "por defecto"
 secretario = Persona('Juanito', 'Pérez', 'García')
 
 director.sueldo_hora
@@ -124,5 +131,5 @@ director.calcula_trabajo()
 # Ejercicio #
 #___________#
 
-# Atribuir un sueldo por horas al director y otro al secretario
-# Crear un método que calcule el sueldo en función del tiempo trabajado.
+# Crear un método que asigne una dieta de transporte de un euro cada vez que una persona fiche
+# Modificar el método que calcula el sueldo para que añada la dieta de transporte.

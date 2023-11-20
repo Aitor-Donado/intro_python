@@ -21,4 +21,6 @@ def area (radio):
 def perimetro (radio):
 	return 2 * pi * radio
 
-print ("Fichero circulo.py cargado en memoria")
+if __name__ == "__main__":
+	print ("Fichero circulo.py cargado en memoria")
+	print(area(5))

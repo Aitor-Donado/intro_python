@@ -15,7 +15,7 @@ Created on Tue Mar  7 17:49:57 2023
 # Identificados con el código SyntaxError.
 # Spyder es capaz de detectarlos
 
-# print("Hola"
+#print("Hola"
 
 # Mensaje -> SyntaxError: unexpected EOF while parsing
 
@@ -37,7 +37,8 @@ Created on Tue Mar  7 17:49:57 2023
 # En un mismo código a veces pueden ocurrir y otras no.
 
 # Ejemplo pop() con lista vacía
-
+lista = [1,2,3]
+lista.pop()
 # Fallo de tipo IndexError.
 # Esta situación ocurre sólo durante la ejecución del programa,
 # por lo que los editores no lo detectarán:
@@ -95,7 +96,6 @@ try:
         format(numerador, denominador, numerador/denominador))
 except:
     print("Ha ocurrido un error, introduce bien el número")
-
 print("Sigo")
 
 # Podemos aprovechar las excepciones para forzar al usuario a introducir
@@ -150,18 +150,19 @@ while(True):
 
 # Para ello asignamos la excepción a una variable
 # y analizar el tipo de error gracias a su identificador:
+while True:
+    try:
+        numerador = float(input("Introduce un número: "))
+        denominador = float(input("Introduce otro número: "))
+        print("El numerador {} dividido entre el denominador {} es {}".
+            format(numerador, denominador, numerador/denominador))
+    except Exception as e:  # guardamos la excepción como una variable e
+        print("Ha ocurrido un error =>", type(e).__name__)
+        if type(e).__name__ == "ValueError":
+            print("Lo encontré")
 
-try:
-    numerador = float(input("Introduce un número: "))
-    denominador = float(input("Introduce otro número: "))
-    print("El numerador {} dividido entre el denominador {} es {}".
-        format(numerador, denominador, numerador/denominador))
-except Exception as e:  # guardamos la excepción como una variable e
-    print("Ha ocurrido un error =>", type(e).__name__)
-    if type(e).__name__ == "ValueError":
-        print("Lo encontré")
-
-print("Sigo")
+    print("Sigo")
+    break
 
 
 """
@@ -170,18 +171,19 @@ siempre que dejemos en último lugar la excepción por defecto
 Excepcion que engloba cualquier tipo de error 
 (si la pusiéramos al principio las demas excepciones nunca se ejecutarían):
 """
-
-try:
-    numerador = float(input("Introduce un número: "))
-    denominador = float(input("Introduce otro número: "))
-    print("El numerador {} dividido entre el denominador {} es {}".
-        format(numerador, denominador, numerador/denominador))
-except ValueError:
-    print("Debes introducir una cadena que sea un número")
-except ZeroDivisionError:
-    print("No se puede dividir por cero, prueba otro número")
-except Exception as e:
-    print("Ha ocurrido un error no previsto", type(e).__name__)
+while True:
+    try:
+        numerador = float(input("Introduce un número: "))
+        denominador = float(input("Introduce otro número: "))
+        print("El numerador {} dividido entre el denominador {} es {}".
+            format(numerador, denominador, numerador/denominador))
+    except ValueError:
+        print("Debes introducir una cadena que sea un número")
+    except ZeroDivisionError:
+        print("No se puede dividir por cero, prueba otro número")
+    except Exception as e:
+        print("Ha ocurrido un error no previsto", type(e).__name__)
+    break
 
 #############################
 # Invocación de excepciones #
@@ -195,7 +197,7 @@ def mi_funcion(algo=None):
         print(algo)
 
 print(None)
-mi_funcion()
+mi_funcion(None)
 
 # en vez de avisar del error con un print
 # ----------------------
@@ -229,11 +231,29 @@ mi_funcion()
 # Crear una función que genere una excepción de tipo "ValueError" si el usuario
 # introduce una edad por consola que sea negativa o mayor de 120 años.
 
+def dame_edad():
+    edad = int(input("Dime qué edad tienes: "))
+    if edad < 0 or edad > 120:
+        raise ValueError("Error! La edad debe estar entre 0 y 120") 
+    return edad
 
+dame_edad()
 
-
-# A continuación, un bucle infinito "while True" que pida la edad y trate el error
+# A continuación, un bucle infinito "while True" que pida la edad y trate el error3
 # generado por la función. El bucle parará cuando la edad sea correcta.
+
+while True:
+    try:
+        edad = dame_edad()
+    except TypeError as error:
+        print("No puedes introducir nada más que números enteros", error)
+    except ValueError as error:
+        print(error)
+    else:
+        print("Todo ha ido bien. Tienes", edad, "años")
+        break
+    finally:
+        print("Me ejecuto siempre")
 
 #__________#
 # Solución #
