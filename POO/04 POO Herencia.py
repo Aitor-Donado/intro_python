@@ -38,7 +38,6 @@ class Mamifero:
 #---------------------------
 # Clases hijo (o subclases)
 #---------------------------
-
 class Animal_de_granja(Mamifero):
     def __init__(self, comestible):
         self.patas = 4
@@ -89,6 +88,11 @@ ciervo.correr()
 ciervo.guardar_en_choza()
 ciervo.me_lo_como()
 
+raton = Mamifero(comestible = False)
+raton.correr()
+raton.me_lo_como()
+
+
 cerdo = Animal_de_granja(comestible = True)
 cerdo.comestible
 cerdo.correr()
@@ -99,6 +103,8 @@ cerdo.guardar_en_choza()
 cerdo.en_choza
 cerdo.sacar_de_choza()
 cerdo.en_choza
+
+cerdo.guadar_en_casa()
 
 cerdo.me_lo_como()
 
@@ -132,7 +138,6 @@ perro.me_lo_como()
 
 # ____________________________________________________
 # Para no tener que reescribir la funcion __init__
-
 
 class Mamifero:
     def __init__(self, comestible):
@@ -205,11 +210,15 @@ isinstance(ciervo, Mamifero)
 issubclass(Animal_domestico, Animal_de_granja)
 issubclass(Animal_de_granja, Mamifero)
 issubclass(Animal_domestico, Mamifero)
+
 #############
 # Ejercicio #
 #___________#
 # Si transferimos a nuestra aplicacion de personal, puedo crear la clase empleado
 # y a partir de ella crear clases herederas según cargo.
+
+
+
 
 # Las clases "hijo" serán Directivo, Oficinista, Peon
 

@@ -25,6 +25,8 @@ class Animales(ABC):
         print(f"{self.nombre} está comiendo su {comida}")
 
 
+perro = Animales("Lassie")
+
 class Perro(Animales):
     def __init__(self, nombre):
         super().__init__(nombre)

@@ -14,11 +14,14 @@ Created on Tue Mar  7 20:03:06 2023
 
 numero = 10
 type(numero)
+dir(numero)
 
 # En este caso numero es un objeto de la clase int
 
 lista = list((1,2,3))
 type(lista)
+dir(lista)
+lista.append("e")
 
 type(type(lista))
 

@@ -23,7 +23,6 @@ class Persona:
     def get_edad(self):
         return self.__edad
 
-
     def set_edad(self, edad):
         if edad < 0 or edad > 120:
             raise ValueError("La edad no puede ser negativa ni mayor que 120")
@@ -40,6 +39,9 @@ mientras que el método set_edad() establece el valor del atributo privado __eda
 después de validar que el valor de edad es válido."""
 
 vigilante = Persona("Pedro", 50)
+vigilante.__edad = 100
+vigilante.saludar()
+
 vigilante.set_edad(51)
 vigilante.get_edad()
 
@@ -77,6 +79,7 @@ vigilante.edad = -3
 vigilante.edad = 51
 vigilante.edad
 
+vigilante.saludar()
 
 class Persona:
     def __init__(self, nombre, apellido1, apellido2):
@@ -124,6 +127,8 @@ print(f"¿Dónde está el secretario? {secretario.esta_en()}")
 
 # director.__ubicacion = "Oyarzun" # Ya no funciona
 director.sale_de_viaje("Oyarzun")
+
+director.__ubicacion = "Bilbao"
 
 print(f"¿Está trabajando {director.nombre}? {director.trabajando}")
 # print(f"¿Dónde está el director? {director.__ubicacion}") # Ya no funciona

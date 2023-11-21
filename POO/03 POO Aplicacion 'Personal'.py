@@ -72,7 +72,7 @@ print(f"¿Dónde está el secretario? {secretario.ubicacion}")
 # Etapa2: Vamos a llevar una contabilidad de los fichajes
 #----------------------------------------------------------
 class Persona:
-    def __init__(self, nombre, apellido1, apellido2, sueldo_hora=20):
+    def __init__(self, nombre, apellido1, apellido2, sueldo_hora = 20):
         # Características
         self.nombre = nombre
         self.apellido1 = apellido1
@@ -80,17 +80,18 @@ class Persona:
         self.sueldo_hora = sueldo_hora
         # Estados
         self.fichajes = []
+        self.transporte = 0
         self.trabajando = False
         self.ubicacion = "Rentería"
 
     # Los métodos son funciones con "self"
     def presentarse(self):
-        print(
-            f'Hola, mi nombre es {self.nombre} {self.apellido1} {self.apellido2}')
+        print(f'Hola, mi nombre es {self.nombre} {self.apellido1} {self.apellido2}')
 
     def ficha(self):
         self.trabajando = not self.trabajando
         self.fichajes.append(datetime.datetime.now())
+        self.transporte += 1
 
     def muestra_fichajes(self):
         print(self.fichajes)
@@ -108,7 +109,7 @@ class Persona:
 
     def calcula_sueldo(self):
         tiempo_trabajo = self.calcula_trabajo().seconds/3600
-        return tiempo_trabajo*self.sueldo_hora
+        return tiempo_trabajo*self.sueldo_hora + self.transporte
 
 
 director = Persona('Juan', 'Pérez', 'López', sueldo_hora=30)
@@ -123,6 +124,7 @@ secretario.trabajando
 secretario.muestra_fichajes()
 tiempo_de_trabajo = secretario.calcula_trabajo()
 
+secretario.transporte
 sueldo_secretario = secretario.calcula_sueldo()
 
 director.calcula_trabajo()
@@ -130,6 +132,7 @@ director.calcula_trabajo()
 #############
 # Ejercicio #
 #___________#
+
 
 # Crear un método que asigne una dieta de transporte de un euro cada vez que una persona fiche
 # Modificar el método que calcula el sueldo para que añada la dieta de transporte.

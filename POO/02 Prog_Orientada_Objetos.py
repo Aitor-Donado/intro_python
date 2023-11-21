@@ -33,6 +33,8 @@ pretzel = Galleta()
 pretzel.sabor = "salado"
 pretzel.color = "marrón"
 
+dir(pretzel)
+
 print(f"El sabor del pretzel es {pretzel.sabor} "
       f"y el color {pretzel.color}")
 
@@ -44,8 +46,9 @@ pretzel.__dict__
 dir(pretzel)
 
 maria = Galleta()
-# maria.sabor = "dulce"
-# maria.color = "marrón"
+maria.sabor
+maria.sabor = "dulce"
+maria.color = "marrón"
 
 # Si no atribuyo los atributos, no existen
 print(f"El sabor de esta la galleta Maria es {maria.sabor} "
@@ -64,6 +67,7 @@ class Galleta:
     nata = False
 
 principe = Galleta()
+principe.nata
 
 if principe.chocolate:
     print("La galleta tiene chocolate")
@@ -119,8 +123,8 @@ luego llamarlo desde el objeto con los paréntesis, como si de una función se t
 class Galleta:
     chocolate = False
 
-    def saludar():
-        print("Hola, soy una galleta muy sabrosa")
+    def saludar(self):
+        print(f"Hola, soy una galleta muy sabrosa")
 
 artiach = Galleta()
 
@@ -201,9 +205,10 @@ class Galleta:
         print(f"Se acaba de crear una galleta {self.color} y {self.sabor}.")
 
 
-pretzel = Galleta("marrón", "salada")
-artiach = Galleta("blanca", "dulce")
+pretzel = Galleta(color = "marrón", sabor = "salada")
+artiach = Galleta("dulce", "blanca")
 
+artiach.sabor
 # Como los métodos se comportan como funciones tienen sus mismas características,
 # permitiéndonos definir valores nulos, valores por posición y clave,
 # argumentos indeterminados, etc.
@@ -247,7 +252,6 @@ del(artiach)
 
 # Funciones como str() y len(), también son accesores de los métodos especiales
 # __str__ y __len__ que tienen los objetos.
-
 
 #######
 # str #
@@ -294,7 +298,6 @@ mostrar algo por pantalla, ese es el funcionamiento que se espera de él.
 # a la función len().
 
 class Cancion:
-
     def __init__(self, autor, titulo, duracion):  # en segundos
         self.duracion = duracion
         self.autor = autor
@@ -303,10 +306,14 @@ class Cancion:
     def __len__(self):
         return self.duracion
 
+    def __eq__(self, otro):
+        return self.titulo == otro.titulo
+
 
 cancion = Cancion("Queen", "Don't Stop Me Now", 210)
 cancion.autor
 cancion.titulo
+cancion.duracion
 
 print(len(cancion))
 print(cancion.__len__())
@@ -319,7 +326,11 @@ __repr__: Este método define la representación de cadena de texto del objeto
 
 __eq__: Este método define la igualdad entre dos objetos de la clase. 
     Se utiliza para comparar objetos mediante el operador ==.
+"""
+cancion2 =  Cancion("Otro grupo", "Don't Stop Me Now", 250)
 
+cancion == cancion2
+"""
 __lt__: Este método define el orden entre dos objetos de la clase. Se utiliza 
     para comparar objetos mediante el operador <.
 
@@ -337,13 +348,60 @@ __setattr__: Este método se llama cuando se intenta asignar un valor a un atrib
 #___________#
 
 # Crear la clase coche
+class Coche:
+    def __init__(self, marca, modelo, longitud, precio):
+        self.marca = marca
+        self.modelo = modelo
+        self.longitud = longitud
+        self.precio = precio
+
+    def __del__(self):
+        print(f"¡El coche {self.marca} {self.modelo} ha sido eliminado!")
+
+    def __len__(self):
+        return int(self.longitud *100)
+
+    def __str__(self):
+        return f"Coche {self.marca} {self.modelo}"
+    
+    def __gt__(self, otro):
+        return self.precio > otro.precio
+
+    def __lt__(self, otro):
+        return self.precio < otro.precio
+    
+    def __ge__(self, otro):
+        return self.precio >= otro.precio
+
+    def __le__(self, otro):
+        return self.precio <= otro.precio
+    
+    def __eq__(self, otro):
+        return self.precio == otro.precio
+    
+    def max(self, otro):
+        if self.precio > otro.precio:
+            return self
+        else:
+            return otro
+
+    
 
 # Crear objetos de la clase coche
-
-# Atribuirles características que se creen al iniciolizar, basadas en datos
+# Atribuirles características que se creen al inicializar, basadas en datos
 # introducidos al crear los objetos
+coche1 = Coche("Renault", "Megane", 3.5, 3000)
+coche2 = Coche("BMW", "530", 3.7, 4500)
 
 # Atribuirles métodos que permitan imprimir en la pantalla:
 # Un mensaje al borrar el objeto
+#del(coche1)
 # un valor de longitud
+len(coche1)
 # un valor al hacer print()
+print(coche2)
+
+coche1 < coche2
+
+coche1.max(coche2)
+coche2
