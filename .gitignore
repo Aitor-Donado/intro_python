@@ -1,4 +1,6 @@
 .gitignore
+/.trunk
+/.vscode
 *Soluciones*
 **/*Soluciones*
 /Visualización
