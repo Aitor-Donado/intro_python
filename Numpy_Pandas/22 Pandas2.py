@@ -40,6 +40,7 @@ except Exception as e:
 # * Caracter decimal.
 # * Codificación.
 df.head()
+df.tail(10)
 
 #######################
 # Exploración inicial #
@@ -81,8 +82,10 @@ df.head()
 # ReferenciaCP renombrar a CPReferenciado
 df = df.rename(columns={'Catastro':'CatastroMax','ReferenciaCP':'CPReferenciado'})
 
+df.columns
 # Otra forma de dar nombre a las columnas
-#df.columns = ['dasda','asdsda','asdasd']
+# df.columns = ['dasda','asdsda','asdasd']
+# df.columns = ['CatMax', 'CPReferenciado', 'Id', 'Producto', 'Fecha', 'Producto', 'AltaCliente']
 df.head()
 
 # Generar variables dummies
@@ -102,6 +105,7 @@ df_dummies_Producto.head()
 
 
 df_productos_cliente = df_dummies_Producto.groupby(['IdCliente', 'Fecha'])['Facturacion'].sum().reset_index()
+df_productos_cliente.info()
 
 df_productos_cliente.head(30)
 
@@ -111,7 +115,10 @@ df_productos_cliente.head(30)
 
 # Contrataciones del mes de mayo
 df.info()
+filtro_mayo = df["Fecha"].dt.month == 5
+df[df["Fecha"].dt.month == 5]["Fecha"]
 
+df["CatastroMax"] = df["CatastroMax"].str.replace("UN", "AM")
 df.query('Fecha.dt.month == 5')
 
 # Esto da error
@@ -123,7 +130,7 @@ df['AltaCliente'] = pd.to_datetime(df['AltaCliente'], errors='coerce')
 df.info()
 df['IdCliente'] = df['IdCliente'].astype('int')
 
-df.query('AltaCliente.dt.day <= 10 or IdCliente<100000')
+df.query('AltaCliente.dt.day <= 10 and IdCliente<100000')["IdCliente"]
 
 # ### Consultas más complejas
 productos = ['N01', 'N06']
@@ -132,8 +139,8 @@ for producto in productos:
 
 producto = 'N01'
 tipoprod = 'Servicio sin cuota'
-df.query('AltaCliente.dt.day <= 10 and (Producto == @producto or TipoProducto == @tipoprod)')
-
+filtrado = df.query('AltaCliente.dt.day <= 10 and (Producto == @producto or TipoProducto == @tipoprod)')
+filtrado[["Producto", "TipoProducto"]]
 
 # Extraemos del CatastroMax el código de área
 # Para ello eliminamos primero todos los espacios y posteriormente extraemos el texto de las posiciones 3 a 4
@@ -142,7 +149,7 @@ df['Provincia'] = df['CatastroMax'].str.slice(4,6)
 df.head(20)
 
 
-# ### Clientes dados de alta en el mes de abril abril
+# ### Clientes dados de alta en el mes de abril
 df.query('AltaCliente.dt.month == 4')
 
 
@@ -155,7 +162,7 @@ df.query('Fecha.dt.month == 4')['Facturacion'].sum()
 df.info()
 df['Provincia'] = df['Provincia'].astype('string')
 
-vizcainos = df.query('Provincia =="48"')
+vizcainos = df.query('Provincia !="48"')
 vizcainos['Facturacion'].max()
 vizcainos['Facturacion'].min()
 

@@ -90,6 +90,7 @@ ciervo.me_lo_como()
 
 raton = Mamifero(comestible = False)
 raton.correr()
+raton.saltar()
 raton.me_lo_como()
 
 
@@ -210,6 +211,7 @@ isinstance(ciervo, Mamifero)
 issubclass(Animal_domestico, Animal_de_granja)
 issubclass(Animal_de_granja, Mamifero)
 issubclass(Animal_domestico, Mamifero)
+
 
 #############
 # Ejercicio #

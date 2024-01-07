@@ -36,6 +36,7 @@ tempe.tail()
 # #### Obtener la información básica de cada csv cargado (info())
 adult.info()
 # Eliminamos una columna que no tiene datos
+adult.drop("OutlierAge", axis=1, inplace=True)
 del adult["OutlierAge"]
 
 fuego.info()
@@ -70,10 +71,12 @@ tempe.dropna()
 
 # No hemos guardado la eliminación de filas o columnas. Vamos a probar a rellenar los nan de tempe con las medias de la misma columna
 # Primero obtenemos una lista de los nombres de las columnas con valores nulos
+
 filtro_columnas_con_nulos = tempe.isnull().any()
 columnas_con_nulos = filtro_columnas_con_nulos.index[filtro_columnas_con_nulos]
 
 # Y ahora rellenamos los nulos de cada una con su media
+tempe["Ten. L1"].fillna(tempe["Ten. L1"].mean(), inplace=True)
 for columna in columnas_con_nulos:
     tempe[columna].fillna(tempe[columna].mean(), inplace=True)
 
@@ -88,7 +91,6 @@ En el dataset adult, comprueba los valores existentes en la columna Sex.
 ¿Los valores son consistentes? ¿Ves alguna categoría errónea? 
 Sustituye la categoría errónea por el valor correcto
 """
-
 adult["Sex"].unique()
 
 adult["Sex"] = adult["Sex"].astype('category')
@@ -102,6 +104,6 @@ adult["Sex"].value_counts()
 
 
 # Guardar los archivos modificados en la misma carpeta
-adult.to_csv(ubicacion + "adult.csv")
-fuego.to_csv(ubicacion + "fuego.csv")
-tempe.to_csv(ubicacion + "tempe.csv")
+adult.to_csv(ubicacion + "adult.csv", index=False)
+fuego.to_csv(ubicacion + "fuego.csv", index=False)
+tempe.to_csv(ubicacion + "tempe.csv", index=False)

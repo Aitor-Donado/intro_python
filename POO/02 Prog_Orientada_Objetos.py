@@ -36,7 +36,7 @@ pretzel.color = "marrón"
 dir(pretzel)
 
 print(f"El sabor del pretzel es {pretzel.sabor} "
-      f"y el color {pretzel.color}")
+    f"y el color {pretzel.color}")
 
 pretzel.__getattribute__("color")
 pretzel.__getattribute__("sabor")
@@ -67,7 +67,7 @@ class Galleta:
     nata = False
 
 principe = Galleta()
-principe.nata
+principe.chocolate
 
 if principe.chocolate:
     print("La galleta tiene chocolate")
@@ -145,10 +145,11 @@ class Galleta:
 
     def saludar(soy_el_propio_objeto):
         print("Hola, soy una galleta muy sabrosa")
-        print("Referencia al objeto: ", soy_el_propio_objeto)
+        print("Referencia al objeto: ", soy_el_propio_objeto.chocolate)
 
 
 campurriana = Galleta()
+campurriana.chocolate = True
 campurriana.saludar()
 
 print(campurriana)
@@ -199,13 +200,17 @@ class Galleta:
     chocolate = False
     sabor = "insipida"
 
-    def __init__(self, sabor, color):
+    def __init__(self, sabor = "dulce", color = "marrón"):
         self.sabor = sabor
         self.color = color
         print(f"Se acaba de crear una galleta {self.color} y {self.sabor}.")
 
 
 pretzel = Galleta(color = "marrón", sabor = "salada")
+pretzel.sabor
+
+
+
 artiach = Galleta("dulce", "blanca")
 
 artiach.sabor
@@ -285,6 +290,7 @@ artiach = Galleta("dulce", "blanca")
 print(artiach)
 str(artiach)
 artiach.__str__()
+
 """
 Hay que tener en cuenta que este método debe devolver la cadena en lugar de 
 mostrar algo por pantalla, ese es el funcionamiento que se espera de él.
@@ -330,6 +336,7 @@ __eq__: Este método define la igualdad entre dos objetos de la clase.
 cancion2 =  Cancion("Otro grupo", "Don't Stop Me Now", 250)
 
 cancion == cancion2
+
 """
 __lt__: Este método define el orden entre dos objetos de la clase. Se utiliza 
     para comparar objetos mediante el operador <.

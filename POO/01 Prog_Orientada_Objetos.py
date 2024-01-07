@@ -15,7 +15,7 @@ Created on Tue Mar  7 20:03:06 2023
 numero = 10
 type(numero)
 dir(numero)
-
+numero.to_bytes(2, byteorder="little")
 # En este caso numero es un objeto de la clase int
 
 lista = list((1,2,3))
@@ -30,7 +30,7 @@ def hola():
     pass
 
 type(hola)
-
+dir(hola)
 
 #######################
 # Definición de clase #
@@ -85,3 +85,5 @@ print(maria.__class__.__name__)
 # Resumiendo: los objetos son instancias de una clase.
 isinstance(oreo, Galleta)
 isinstance(maria, Galleta)
+isinstance(numero,int)
+isinstance(lista, list)

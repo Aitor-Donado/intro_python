@@ -58,12 +58,12 @@ print(inspect.getsource(area))
 #######################
 
 variable = "Estoy fuera. Soy una variable global"
-
+globals()
 
 def funcion_sin_globales():
     # print(variable) # Da error si la variable es global
     variable = "Estoy en la funcion. Soy una variable local"
-    print("Variables locales dentro de la función", locals())
+    print("Variables locales dentro de la función: ", locals())
     print(variable)
 
 
@@ -84,9 +84,9 @@ def funcion_con_globales():
     # y la puedo modificar
     variable = "La variable global modificada desde dentro."
     # Si imprimo locals no aparece la variable
-    print("Variables locales antes de crear variable_local", locals())
+    print("Variables locales antes de crear variable_local: ", locals())
     variable_local = "Estoy en la funcion. Soy una variable local"
-    print("Variables locales después de crear variable_local", locals())
+    print("Variables locales después de crear variable_local: ", locals())
     print(variable_local)
 
 
@@ -115,9 +115,8 @@ def funcion_exterior():
 
 funcion_exterior()
 
+
 # Con el retornado de la función interior
-
-
 def funcion_exterior():
     variable_exterior = "Puedo usar la variable de la función exterior en la interior"
 
@@ -133,14 +132,11 @@ def funcion_exterior():
 
 funcion_exterior()
 
+
 # No puedo modificar la variable de la función exterior en la interior
-
-
 def funcion_exterior():
     variable_exterior = "Puedo usar la variable de la función exterior en la interior"
-
     def funcion_interior():
-        # Da error
         variable_exterior = "Modifico la variable exterior"
         print(variable_exterior)
         variable_interior = "Variable creada en la función interior"
@@ -149,13 +145,13 @@ def funcion_exterior():
     variable_interior_retornada = funcion_interior()
     # Ahora si puedo usarla en la función exterior
     print(variable_interior_retornada)
+    # Las modificaciones de la variable de la función exterior en la interior no han tenido efecto
+    print(variable_exterior)
 
 
 funcion_exterior()
 
 # Para hacerla tengo que traerla con nonlocal, pero sólo si no la he usado antes
-
-
 def funcion_exterior():
     variable_exterior = "Puedo usar la variable de la función exterior en la interior"
 

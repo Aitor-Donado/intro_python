@@ -83,6 +83,11 @@ class Persona:
         self.transporte = 0
         self.trabajando = False
         self.ubicacion = "Rentería"
+        # Balance de trabajo
+        self.tiempo_trabajado = 0
+        self.dinero_ganado = 0
+        self.vacaciones_acumuladas = 0
+
 
     # Los métodos son funciones con "self"
     def presentarse(self):
@@ -92,11 +97,15 @@ class Persona:
         self.trabajando = not self.trabajando
         self.fichajes.append(datetime.datetime.now())
         self.transporte += 1
+        if not self.trabajando:
+            self.tiempo_trabajado = self.__calcula_trabajo()
+            self.dinero_ganado= self.__calcula_sueldo()
+            self.vacaciones_acumuladas = self.__calcula_vacaciones()
 
     def muestra_fichajes(self):
         print(self.fichajes)
 
-    def calcula_trabajo(self):
+    def __calcula_trabajo(self):
         delta_acum = datetime.timedelta(0)
         jornada = 0
         for entrada, salida in zip(self.fichajes[::2], self.fichajes[1::2]):
@@ -107,9 +116,12 @@ class Persona:
 
         return delta_acum
 
-    def calcula_sueldo(self):
-        tiempo_trabajo = self.calcula_trabajo().seconds/3600
+    def __calcula_sueldo(self):
+        tiempo_trabajo = self.__calcula_trabajo().seconds/3600
         return tiempo_trabajo*self.sueldo_hora + self.transporte
+
+    def __calcula_vacaciones(self):
+        return self.__calcula_trabajo()/5
 
 
 director = Persona('Juan', 'Pérez', 'López', sueldo_hora=30)
@@ -122,17 +134,21 @@ secretario.sueldo_hora
 secretario.ficha()
 secretario.trabajando
 secretario.muestra_fichajes()
-tiempo_de_trabajo = secretario.calcula_trabajo()
+tiempo_de_trabajo = secretario.__calcula_trabajo()
+secretario.__calcula_vacaciones()
 
 secretario.transporte
-sueldo_secretario = secretario.calcula_sueldo()
+sueldo_secretario = secretario.__calcula_sueldo()
 
-director.calcula_trabajo()
+secretario.tiempo_trabajado
+secretario.dinero_ganado
+secretario.vacaciones_acumuladas
+
+director.__calcula_trabajo()
 
 #############
 # Ejercicio #
 #___________#
-
 
 # Crear un método que asigne una dieta de transporte de un euro cada vez que una persona fiche
 # Modificar el método que calcula el sueldo para que añada la dieta de transporte.

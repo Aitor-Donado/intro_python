@@ -39,7 +39,8 @@ mientras que el método set_edad() establece el valor del atributo privado __eda
 después de validar que el valor de edad es válido."""
 
 vigilante = Persona("Pedro", 50)
-vigilante.__edad = 100
+vigilante.__edad = 25
+dir(vigilante)
 vigilante.saludar()
 
 vigilante.set_edad(51)

@@ -234,7 +234,7 @@ mi_funcion()
 def dame_edad():
     edad = int(input("Dime qué edad tienes: "))
     if edad < 0 or edad > 120:
-        raise ValueError("Error! La edad debe estar entre 0 y 120") 
+        raise ValueError("¡Error! La edad debe estar comprendida entre 0 y 120") 
     return edad
 
 dame_edad()
@@ -245,10 +245,8 @@ dame_edad()
 while True:
     try:
         edad = dame_edad()
-    except TypeError as error:
-        print("No puedes introducir nada más que números enteros", error)
     except ValueError as error:
-        print(error)
+        print("Error de valor:", error)
     else:
         print("Todo ha ido bien. Tienes", edad, "años")
         break
