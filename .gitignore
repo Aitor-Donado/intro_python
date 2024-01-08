@@ -1,6 +1,6 @@
 .gitignore
 /.trunk
-/.vscode
+/.vscode/
 *Soluciones*
 **/*Soluciones*
 /Visualización
